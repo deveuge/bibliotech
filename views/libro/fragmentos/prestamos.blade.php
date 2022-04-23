@@ -22,8 +22,8 @@
                     <td>{{ $prestamo->getFechaAsignadaDevolucion() }}</td>
                     <td>{{ $prestamo->getEstado() }}</td>
                     <td>
-                        <a href="#" class="btn btn-outline-primary"><i class="fas fa-undo"></i></a>
-                        <a href="#" class="btn btn-outline-danger"><i class="fas fa-file-signature"></i></a>
+                        <a href="#" class="btn btn-outline-primary" data-bs-toggle="tooltip" title="Realizar devolución"><i class="fas fa-undo"></i></a>
+                        <a href="#" class="btn btn-outline-danger" data-bs-toggle="tooltip" title="Emitir multa"><i class="fas fa-file-signature"></i></a>
                     </td>
                 </tr>
                 @endforeach

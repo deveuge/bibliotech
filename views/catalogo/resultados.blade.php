@@ -19,10 +19,10 @@
                         <td>{{ $libro->getNombre() }}</td>
                         <td>{{ $libro->getAutor() }}</td>
                         <td>{{ $libro->getCategoria()->getNombre() }}</td>
-                        <td>// TODO:</td>
+                        <td>{{ $libro->getDisponibles() }}</td>
                         <td>
-                            <a href="libro.php?id={{ $libro->getIsbn() }}" class="btn btn-outline-primary"><i class="fas fa-fw fa-info"></i></a>
-                            <a href="#" class="btn btn-outline-success"><i class="fas fa-fw fa-book"></i></a>
+                            <a href="libro.php?id={{ $libro->getIsbn() }}" class="btn btn-outline-primary" data-bs-toggle="tooltip" title="Ver detalle"><i class="fas fa-fw fa-info"></i></a>
+                            <a href="#" class="btn btn-outline-success" data-bs-toggle="tooltip" title="Solicitar libro"><i class="fas fa-fw fa-book"></i></a>
                         </td>
                     </tr>
                     @endforeach

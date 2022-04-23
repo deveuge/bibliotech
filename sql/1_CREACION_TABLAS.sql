@@ -47,7 +47,7 @@ CREATE TABLE `lending` (
   `id` int(4) NOT NULL AUTO_INCREMENT,
   `book_id` varchar(255) NOT NULL,
   `user_id` varchar(255) NOT NULL,
-  `returned` tinyint(1) NOT NULL,
+  `returned` tinyint(1) NOT NULL DEFAULT 0,
   `assigned_return_date` datetime,
   `real_return_date` datetime,
   `created_at` datetime NOT NULL,

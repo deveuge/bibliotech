@@ -21,7 +21,7 @@
                     <td>{{ $prestamo->getFechaAsignadaDevolucion() }}</td>
                     <td>{{ $prestamo->getEstado() }}</td>
                     <td>
-                        <a href="libro.php?id={{ $prestamo->getLibro()->getIsbn() }}" class="btn btn-outline-primary"><i class="fas fa-fw fa-info"></i></a>
+                        <a href="libro.php?id={{ $prestamo->getLibro()->getIsbn() }}" class="btn btn-outline-primary" data-bs-toggle="tooltip" title="Ver detalle"><i class="fas fa-fw fa-info"></i></a>
                     </td>
                 </tr>
                 @endforeach

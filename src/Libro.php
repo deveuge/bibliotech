@@ -13,6 +13,7 @@ class Libro {
     private $categoria;
     private $paginas;
     private $fechaPublicacion;
+    private $disponibles;
 
     public function __construct() {
         $num = func_num_args();
@@ -23,7 +24,7 @@ class Libro {
                 $this->autor = func_get_arg(2);
                 $this->descripcion = func_get_arg(3);
                 break;
-            case 9:
+            case 10:
                 $this->isbn = func_get_arg(0);
                 $this->nombre = func_get_arg(1);
                 $this->autor = func_get_arg(2);
@@ -33,6 +34,7 @@ class Libro {
                 $this->categoria = func_get_arg(6);
                 $this->paginas = func_get_arg(7);
                 $this->fechaPublicacion = func_get_arg(8);
+                $this->disponibles = func_get_arg(9);
                 break;
         }
     }
@@ -57,7 +59,8 @@ class Libro {
                     NULL
                 ),
                 $resultado['pages'],
-                $resultado['publish_date']
+                $resultado['publish_date'],
+                $resultado['availables']
             ));
         }
         return $libros;
@@ -70,7 +73,9 @@ class Libro {
         $filas = $filter->getFilas();
         $offset = ($filter->getPagina() - 1) * $filas;
         return <<<EOD
-            SELECT b.*, c.name AS category_name FROM book b JOIN category c ON b.category_id = c.id 
+            SELECT b.*, c.name AS category_name, 
+            b.quantity - (SELECT COUNT(*) FROM lending WHERE book_id = b.ISBN and returned = 0) AS availables  
+            FROM book b JOIN category c ON b.category_id = c.id 
             $agregarWhere $agregarFiltros $agregarOrden
             LIMIT $filas OFFSET $offset
         EOD;
@@ -100,7 +105,7 @@ class Libro {
     
     public static function findLibro($isbn) {
         $conexion = new Conexion();
-        $stmt = $conexion->getConexion()->prepare("SELECT b.*, c.name AS category_name FROM book b JOIN category c ON b.category_id = c.id WHERE isbn = ?");
+        $stmt = $conexion->getConexion()->prepare("SELECT b.*, c.name AS category_name, b.quantity - (SELECT COUNT(*) FROM lending WHERE book_id = b.ISBN and returned = 0) AS availables FROM book b JOIN category c ON b.category_id = c.id WHERE isbn = ?");
         $stmt->execute([$isbn]);
         $resultado = $stmt->fetch();
         if($resultado == null) {
@@ -119,7 +124,8 @@ class Libro {
                 NULL
             ),
             $resultado['pages'],
-            $resultado['publish_date']
+            $resultado['publish_date'],
+            $resultado['availables']
         );
     }
 
@@ -140,11 +146,12 @@ class Libro {
 
     public static function insertarLibro($libro) {
         $conexion = new Conexion();
-        $stmt = $conexion->getConexion()->prepare("INSERT INTO book VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $conexion->getConexion()->prepare("INSERT INTO book VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->execute([
             $libro->getIsbn(),
             $libro->getAutor(),
             $libro->getNombre(),
+            $libro->getDescripcion(),
             $libro->getPrecio(),
             $libro->getCantidad(),
             $libro->getCategoria()->getId(),
@@ -218,6 +225,10 @@ class Libro {
             return '';
         }
         return date_create($this->fechaPublicacion)->format('Y-m-d');
+    }
+
+    public function getDisponibles() {
+        return $this->disponibles;
     }
 }
 

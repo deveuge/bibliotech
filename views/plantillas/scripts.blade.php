@@ -3,11 +3,7 @@
 <script src="js/lib/glider.min.js"></script>
 <script src="js/lib/chart.min.js"></script>
 
-<script>
-    setTimeout(function() {
-        $(".alert-dismissible").alert('close');
-    }, 4000);
-</script>
+<script src="js/general.js"></script>
 
 @isset($jaxon)
 <?php echo $jaxon->getJs() ?>

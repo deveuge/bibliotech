@@ -80,7 +80,7 @@ class FiltroPrestamo {
     }
 
     public function hasFilter() {
-        return $this->username || $this->isbn || $this->devuelto || $this->fechaDevolucionDesde || $this->fechaDevolucionHasta;
+        return $this->username || $this->isbn || $this->devuelto != null || $this->fechaDevolucionDesde || $this->fechaDevolucionHasta;
     }
 
     public function getFilterQuery() {

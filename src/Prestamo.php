@@ -2,6 +2,7 @@
 namespace Clases;
 require_once '../vendor/autoload.php';
 use Clases\Conexion;
+use Clases\Utils\Funciones;
 
 class Prestamo {
     private $id;
@@ -77,6 +78,24 @@ class Prestamo {
             JOIN book b ON l.book_id = b.isbn 
             $agregarWhere $agregarFiltros
         EOD;
+    }
+
+    public static function existePrestamoActivo($usuario, $isbn) {
+        $conexion = new Conexion();
+        $stmt = $conexion->getConexion()->prepare("SELECT COUNT(*) FROM lending WHERE user_id = ? AND book_id = ? AND returned = 0");
+        $stmt->execute([$usuario, $isbn]);
+        return $stmt->fetch()[0] > 0;
+    }
+
+    public static function insertarPrestamo($usuario, $isbn) {
+        $conexion = new Conexion();
+        $stmt = $conexion->getConexion()->prepare("INSERT INTO lending (`user_id`, `book_id`, `assigned_return_date`, `created_at`) VALUES (?, ?, ?, ?)");
+        $stmt->execute([
+            $usuario,
+            $isbn,
+            Funciones::getFechaDevolucion()->format('Y-m-d H:i:s'),
+            date_create()->format('Y-m-d H:i:s')
+        ]);
     }
 
     /* GETTERS */
