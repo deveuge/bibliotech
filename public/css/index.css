@@ -1,0 +1,89 @@
+aside, main {
+    display: flex;
+    flex-direction: column;
+    padding: 3vw !important;
+}
+
+/* LATERAL - CARACTERÍSTICAS */
+#caracteristicas {
+    max-width: 400px;
+    margin: auto;
+    padding: 2rem;
+    text-align: center;
+    font-style: italic;
+}
+
+#caracteristicas p {
+    margin-top: 1rem;
+}
+
+.carousel-indicators {
+    margin-bottom: -1rem;
+}
+
+svg {
+    display: block;
+    width: 70%;
+    max-width: 250px;
+    margin: auto;
+}
+
+path {
+    stroke-width: 3;
+    stroke-dasharray: 500;
+    animation-fill-mode: forwards;
+    animation: dash 3s linear;
+}
+
+@keyframes dash {
+    from {
+        fill: transparent;
+        stroke: white;
+        stroke-dashoffset: 0;
+    }
+    to {
+        fill: white;
+        stroke: transparent;
+        stroke-dashoffset: 3000;
+    }
+}
+
+@media (min-width: 992px) {
+    aside, main {
+        min-height: 100vh;
+    }
+}
+
+/* PRINCIPAL - FORMULARIOS */
+.nav-tabs {
+    display: flex;
+    align-items: center;
+    border-bottom: none;
+}
+
+.nav-link {
+    border: none !important;
+    color: var(--bs-dark);
+    padding: 0.5rem 0;
+    opacity: 0.75;
+}
+
+.nav-link.active {
+    box-shadow: 0 3px 0 0 var(--bs-primary);
+    color: var(--bs-primary) !important;
+    opacity: 1;
+}
+
+.nav-tabs, 
+.tab-content > * {
+    max-width: 450px;
+}
+
+.tab-content > * {
+    margin: auto;
+}
+
+
+.tab-pane h5 {
+    margin-bottom: -0.25rem;
+}

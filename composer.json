@@ -1,0 +1,25 @@
+{
+    "name": "mbalsamo/bibliotech",
+    "description": "Aplicaci\u0000n web para la gesti\u0000n de bibliotecas en el \u0000mbito educativo",
+    "type": "project",
+	"config": {
+		"optimize-autoloader": true
+	},
+    "autoload": {
+        "psr-4": {
+            "Clases\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "mbalsamo",
+            "email": "m.balsamoarcomano@gmail.com"
+        }
+    ],
+    "require": {
+        "philo/laravel-blade": "^3.1",
+        "jaxon-php/jaxon-core": "^3.8",
+        "jaxon-php/jaxon-js": "^3.3",
+        "jaxon-php/jaxon-blade": "^3.0"
+    }
+}
