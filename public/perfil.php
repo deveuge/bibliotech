@@ -2,7 +2,8 @@
     require_once '../vendor/autoload.php';
     require_once '../src/Utils/Blade.php';
 
-    use Clases\Filtros\FiltroPrestamo;
+use Clases\Estadisticas;
+use Clases\Filtros\FiltroPrestamo;
     use Clases\Utils\Alert;
     use Clases\Usuario;
     use Clases\Prestamo;
@@ -31,7 +32,8 @@
             $filtro = new FiltroPrestamo($usuario->getUsername(), null, 1);
             $prestamos = Prestamo::list($filtro);
             $paginacion = new Paginacion(Prestamo::countList($filtro), $filtro->getPagina());
-            echo $blade->view()->make('usuario/ver', compact('usuario', 'prestamos', 'paginacion'))->render();
+            $estadisticas = Estadisticas::getEstadisitcas($usuario->getUsername());
+            echo $blade->view()->make('usuario/ver', compact('usuario', 'prestamos', 'paginacion', 'estadisticas'))->render();
         }
     }
     

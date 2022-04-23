@@ -47,8 +47,7 @@ class FiltroLibro {
     
     public function getFiltroSoloDisponibles() {
         if($this->soloDisponibles) {
-            // TODO:
-            return '';
+            return ' b.quantity - (SELECT COUNT(*) FROM lending WHERE book_id = b.ISBN and returned = 0)  > 0 ';
         }
         return '';
     }

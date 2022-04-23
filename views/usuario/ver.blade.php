@@ -203,28 +203,28 @@
 							<div class="col-6 col-md-3 mb-4">
 								<div class="card-counter bg-primary text-light">
 									<i class="fas fa-book"></i>
-									<span class="count-numbers">12</span>
+									<span class="count-numbers">{{ $estadisticas->getLibros() }}</span>
 									<span class="count-name">Libros leídos</span>
 								</div>
 							</div>
 							<div class="col-6 col-md-3 mb-4">
 								<div class="card-counter bg-primary text-light">
 									<i class="fas fa-feather"></i>
-									<span class="count-numbers">5</span>
+									<span class="count-numbers">{{ $estadisticas->getAutores() }}</span>
 									<span class="count-name">Autores leídos</span>
 								</div>
 							</div>
 							<div class="col-6 col-md-3 mb-4">
 								<div class="card-counter bg-primary text-light">
 									<i class="fas fa-star"></i>
-									<span class="count-numbers">32</span>
+									<span class="count-numbers">{{ $estadisticas->getFavoritos() }}</span>
 									<span class="count-name">Libros en favoritos</span>
 								</div>
 							</div>
 							<div class="col-6 col-md-3 mb-4">
 								<div class="card-counter bg-primary text-light">
 									<i class="fas fa-bookmark"></i>
-									<span class="count-numbers">2</span>
+									<span class="count-numbers">{{ $estadisticas->getPrestamos() }}</span>
 									<span class="count-name">Libros en préstamo</span>
 								</div>
 							</div>
@@ -239,6 +239,12 @@
 
     @include('plantillas.footer')
     @include('plantillas.scripts')
+	<script>
+		let categoriasFavoritasNombres = {!! json_encode($estadisticas->getCategoriasFavoritasNombres()) !!};
+		let categoriasFavoritasValores = {!! json_encode($estadisticas->getCategoriasFavoritasValores()) !!};
+		let librosLeidosNombres = {!! json_encode($estadisticas->getLibrosLeidosNombres()) !!};
+		let librosLeidosValores = {!! json_encode($estadisticas->getLibrosLeidosValores()) !!};
+	</script>
     <script src="js/perfil.js"></script>
 
 </body>

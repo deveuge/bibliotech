@@ -14,20 +14,19 @@ tabEl.addEventListener('shown.bs.tab', function (event) {
     });
 })
 
-const myChart = new Chart(document.getElementById('chart-categorias').getContext('2d'), {
+/* Categorías favoritas */
+new Chart(document.getElementById('chart-categorias').getContext('2d'), {
     type: 'pie',
     data: {
-        labels: [
-            'Red',
-            'Blue',
-            'Yellow'
-        ],
+        labels: categoriasFavoritasNombres,
         datasets: [{
-            data: [300, 50, 100],
+            data: categoriasFavoritasValores,
             backgroundColor: [
                 'rgb(255, 99, 132)',
                 'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)'
+                'rgb(255, 205, 86)',
+                'rgba(75, 192, 192)',
+                'rgba(54, 162, 235)'
             ],
         }]
     },
@@ -40,20 +39,13 @@ const myChart = new Chart(document.getElementById('chart-categorias').getContext
     }
 });
 
-const myChart2 = new Chart(document.getElementById('chart-leidos').getContext('2d'), {
+/* Libros leídos */
+new Chart(document.getElementById('chart-leidos').getContext('2d'), {
     type: 'bar',
     data: {
-        labels: [
-            'JAN',
-            'FEB',
-            'MAR',
-            'APR',
-            'MAY',
-            'JUN',
-            'JUL'
-        ],
+        labels: librosLeidosNombres,
         datasets: [{
-            data: [1, 4, 2, 1, 0, 3, 1],
+            data: librosLeidosValores,
             backgroundColor: [
                 'rgba(255, 99, 132)',
                 'rgba(255, 159, 64)',
@@ -63,15 +55,6 @@ const myChart2 = new Chart(document.getElementById('chart-leidos').getContext('2
                 'rgba(153, 102, 255)',
                 'rgba(201, 203, 207)'
             ],
-            borderColor: [
-                'rgb(255, 99, 132)',
-                'rgb(255, 159, 64)',
-                'rgb(255, 205, 86)',
-                'rgb(75, 192, 192)',
-                'rgb(54, 162, 235)',
-                'rgb(153, 102, 255)',
-                'rgb(201, 203, 207)'
-            ],
             barPercentage: 0.5,
             borderRadius: 5
         }]
@@ -79,7 +62,10 @@ const myChart2 = new Chart(document.getElementById('chart-leidos').getContext('2
     options: {
         scales: {
             y: {
-                beginAtZero: true
+                beginAtZero: true,
+                ticks: {
+                    stepSize: 1
+                }
             }
         },
         plugins: {

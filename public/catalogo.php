@@ -12,7 +12,6 @@
     use Jaxon\Response\Response;
 
     $filtro = new FiltroLibro(1);
-    $_SESSION['filtro_catalogo'] = serialize($filtro);
     $resultados = Libro::list($filtro);
     $paginacion = new Paginacion(Libro::countList($filtro), 1);
 
@@ -34,9 +33,9 @@
         $response = new Response();
         $resultados = Libro::list($filtro);
         $paginacion = new Paginacion(Libro::countList($filtro), $filtro->getPagina());
+        $_SESSION['filtro_catalogo'] = serialize($filtro);
         $viewRendered = $blade->view()->make('catalogo/resultados', compact('resultados', 'paginacion'))->render();
         $response->assign('resultados', 'innerHTML', $viewRendered);
-        $_SESSION['filtro_catalogo'] = serialize($filtro);
         return $response;
     }
 
@@ -46,6 +45,7 @@
         $jaxon->processRequest();
     }
 
+    $_SESSION['filtro_catalogo'] = serialize($filtro);
     $librosTotal = Libro::countAll();
     $categorias = Categoria::list();
     echo $blade->view()->make('catalogo/lista', compact('librosTotal', 'categorias', 'resultados', 'paginacion', 'jaxon'))->render();

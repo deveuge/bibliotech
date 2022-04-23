@@ -98,6 +98,16 @@ class Prestamo {
         ]);
     }
 
+    public static function devolverPrestamo($usuario, $isbn) {
+        $conexion = new Conexion();
+        $stmt = $conexion->getConexion()->prepare("UPDATE lending SET returned = 1, real_return_date = ? WHERE user_id = ? AND book_id = ? AND returned = 0");
+        $stmt->execute([
+            date_create()->format('Y-m-d H:i:s'),
+            $usuario,
+            $isbn
+        ]);
+    }
+
     /* GETTERS */
     public function getId() {
         return $this->id;

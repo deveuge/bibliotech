@@ -22,7 +22,9 @@
                     <td>{{ $prestamo->getFechaAsignadaDevolucion() }}</td>
                     <td>{{ $prestamo->getEstado() }}</td>
                     <td>
-                        <a href="#" class="btn btn-outline-primary" data-bs-toggle="tooltip" title="Realizar devolución"><i class="fas fa-undo"></i></a>
+                        <span class="d-inline-block" data-bs-toggle="tooltip" title="Realizar devolución">
+                            <a href="#" data-target-user="{{ $prestamo->getUsuario()->getUsername() }}" data-target-name="{{ $prestamo->getUsuario()->getNombre() }}" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#devolucionModal"><i class="fas fa-undo"></i></a>
+                        </span>
                         <a href="#" class="btn btn-outline-danger" data-bs-toggle="tooltip" title="Emitir multa"><i class="fas fa-file-signature"></i></a>
                     </td>
                 </tr>
@@ -30,9 +32,6 @@
             </tbody>
         </table>
     </div>
-    <nav class="d-flex justify-content-center">
-        @include('plantillas.paginacion')
-    </nav>
     @else
         <p class="card card-header text-muted text-center rounded mb-3">Sin registros</p>
     @endif

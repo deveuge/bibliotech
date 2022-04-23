@@ -34,15 +34,14 @@ class FiltroPrestamo {
                 $this->isbn = func_get_arg(1);
                 $this->pagina = func_get_arg(2);
                 break;
-            case 8:
+            case 4:
                 $this->username = func_get_arg(0);
                 $this->isbn = func_get_arg(1);
-                $this->devuelto = func_get_arg(2);
-                $this->fechaDevolucionDesde = func_get_arg(3);
-                $this->fechaDevolucionHasta = func_get_arg(4);
-                $this->ordenColumna = func_get_arg(5);
-                $this->ordenDireccion = func_get_arg(6);
-                $this->pagina = func_get_arg(7);
+                $this->devuelto = '0';
+                $this->ordenColumna = func_get_arg(2);
+                $this->ordenDireccion = func_get_arg(3);
+                $this->pagina = 1;
+                $this->filas = 50;
                 break;
         }
     }

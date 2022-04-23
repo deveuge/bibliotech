@@ -10,5 +10,10 @@ class Funciones {
         $date->add(new DateInterval('P30D'));
         return $date;
     }
+
+    public static function getLabelMes($mes) {
+        $array = array('ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC');
+        return $array[$mes - 1];
+    }
 }
 ?>
