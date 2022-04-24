@@ -8,6 +8,7 @@ use Clases\Filtros\FiltroPrestamo;
 use Clases\Libro;
 use Clases\Prestamo;
 use Clases\Utils\Paginacion;
+use Clases\Utils\Funciones;
 
     $libro = new Libro();
     $categorias = Categoria::list();
@@ -57,7 +58,7 @@ use Clases\Utils\Paginacion;
     } else {
         $libro = Libro::findLibro($_GET["id"]);
         $esFavorito = Libro::esFavorito($_SESSION['usuario']->getUsername(), $libro->getIsbn());
-        $alertMessage = getAlertaSolicitudPrestamo();
+        $alertMessage = Funciones::getAlertaSolicitudPrestamo();
         $alertMessage = getAlertaDevolucionPrestamo();
         $alertMessage = getAlertaLibro();
 
@@ -68,28 +69,6 @@ use Clases\Utils\Paginacion;
             $prestamos = Prestamo::list($filtro);
             $paginacion = new Paginacion(Prestamo::countList($filtro), $filtro->getPagina());
             echo $blade->view()->make('libro/ver' , compact('libro', 'esFavorito', 'categorias', 'prestamos', 'paginacion', 'alertMessage'))->render();
-        }
-    }
-
-    function getAlertaSolicitudPrestamo() {
-        global $alertMessage;
-        if($alertMessage != null) {
-            return $alertMessage;
-        }
-        if(!isset($_GET["booked"])) {
-            return null;
-        }
-        switch ($_GET["booked"]) {
-            case 1:
-                return new Alert("Solicitud de préstamo realizada correctamente.<br>Acuda a la biblioteca para recoger su ejemplar.", "success");
-            case 2:
-                return new Alert("No existen ejemplares disponibles para el préstamo.", "danger");
-            case 3:
-                return new Alert("Actualmente ya tiene este libro en préstamo.", "danger");
-            case 4:
-                return new Alert("No existe el libro solicitado.", "danger");
-            default:
-                return null;
         }
     }
 

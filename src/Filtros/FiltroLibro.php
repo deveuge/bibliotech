@@ -103,6 +103,10 @@ class FiltroLibro {
         return $this->filas;
     }
 
+    public function setTexto($texto) {
+        $this->texto = $texto;
+    }
+
     public function setPagina($pagina) {
         $this->pagina = $pagina;
     }

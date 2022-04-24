@@ -22,7 +22,7 @@
 
 				<form action="catalogo.php" method="POST" class="row" id="filtros">
 					<span class="d-flex input-group">
-						<input class="form-control" type="search" id="texto" name="texto" placeholder="Buscar libro por título, autor o ISBN..." aria-label="Search">
+						<input class="form-control" type="search" id="texto" name="texto" placeholder="Buscar libro por título, autor o ISBN..." aria-label="Search" value="{{ $filtro->getTexto() }}">
 						<button class="btn bg-primary text-light" type="submit"><span class="d-none d-md-inline-block">Buscar</span> <i class="fa fa-search"></i></button>
 					</span>
 					<div class="col-12 col-md-3">
@@ -67,6 +67,7 @@
 		</div>
 	</div>
 
+	@include('catalogo.modalSolicitud')
     @include('plantillas.footer')
     @include('plantillas.scripts')
 	<script>
@@ -84,6 +85,14 @@
 		$("body").on("click", ".page-link", function(e) {
 			e.preventDefault();
 			jaxon_paginar($(this).attr("data-page"));
+		});
+
+		$(document).ready(function () {
+			$("#solicitudModal").on("show.bs.modal", function (e) {
+				$('#solicitud-libro').text($(e.relatedTarget).data('target-libro'));
+				$('#solicitud-autor').text($(e.relatedTarget).data('target-autor'));
+				$('#solicitud-isbn').val($(e.relatedTarget).data('target-isbn'));
+			});
 		});
 	</script>
 </body>

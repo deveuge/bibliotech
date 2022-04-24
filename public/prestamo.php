@@ -7,7 +7,12 @@
 
     if(!empty($_POST) && isset($_POST['accion'])) {
         switch($_POST['accion']) {
+            case "solicitar-catalogo":
+                $url = "Location: catalogo.php?booked=";
+                realizarSolicitud();
+                break;
             case "solicitar":
+                $url = "Location: libro.php?id=" . $_POST['isbn'] . "&booked=";
                 realizarSolicitud();
                 break;
             case "devolver":
@@ -17,8 +22,8 @@
     }
 
     function realizarSolicitud() {
+        global $url;
         $isbn = $_POST['isbn'];
-        $url = "Location: libro.php?id=" . $isbn . "&booked=";
         $libro = Libro::findLibro($isbn);
         // Comprobar si existe el libro
         if(!$libro) {

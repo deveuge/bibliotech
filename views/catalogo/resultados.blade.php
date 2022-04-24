@@ -22,7 +22,15 @@
                         <td>{{ $libro->getDisponibles() }}</td>
                         <td>
                             <a href="libro.php?id={{ $libro->getIsbn() }}" class="btn btn-outline-primary" data-bs-toggle="tooltip" title="Ver detalle"><i class="fas fa-fw fa-info"></i></a>
-                            <a href="#" class="btn btn-outline-success" data-bs-toggle="tooltip" title="Solicitar libro"><i class="fas fa-fw fa-book"></i></a>
+                            @if ($libro->getDisponibles() > 0)
+                            <span data-bs-toggle="tooltip" title="Solicitar libro">
+                                <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#solicitudModal" data-target-isbn="{{ $libro->getIsbn() }}" data-target-libro="{{ $libro->getNombre() }}" data-target-autor="{{ $libro->getAutor() }}"><i class="fas fa-fw fa-book"></i></button>
+                            </span>
+                            @else
+                            <span data-bs-toggle="tooltip" title="Solicitud no disponible">
+                                <button class="btn btn-outline-dark disabled"><i class="fas fa-fw fa-book"></i></button>
+                            </span>
+                            @endif
                         </td>
                     </tr>
                     @endforeach

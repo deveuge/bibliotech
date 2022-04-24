@@ -11,8 +11,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="ms-auto">
-                <form class="d-flex input-group search-form">
-                    <input class="form-control" type="search" placeholder="Buscar un libro..." aria-label="Search">
+                <form class="d-flex input-group search-form" action="catalogo.php" method="POST">
+                    <input class="form-control" type="search" name="search" placeholder="Buscar un libro..." aria-label="Search">
                     <button class="btn" type="submit"><span class="fa fa-search"></span></button>
                 </form>
             </div>

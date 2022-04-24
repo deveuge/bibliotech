@@ -14,8 +14,8 @@
 						<h3>Catálogo</h3>
 						<h5 class="mb-2 mb-sm-0">Bibliotech tiene {{ $librosTotal }} libros en su biblioteca</h5>
 					</span>
-					<form class="d-flex input-group search-form">
-						<input class="form-control" type="search" placeholder="Buscar libro por título, autor o ISBN..."
+					<form class="d-flex input-group search-form" action="catalogo.php" method="POST">
+						<input class="form-control" type="search" name="search" placeholder="Buscar libro por título, autor o ISBN..."
 							aria-label="Search">
 						<button class="btn bg-white" type="submit"><span class="fa fa-search"></span></button>
 					</form>
