@@ -105,7 +105,12 @@ class Libro {
     
     public static function findLibro($isbn) {
         $conexion = new Conexion();
-        $stmt = $conexion->getConexion()->prepare("SELECT b.*, c.name AS category_name, b.quantity - (SELECT COUNT(*) FROM lending WHERE book_id = b.ISBN and returned = 0) AS availables FROM book b JOIN category c ON b.category_id = c.id WHERE isbn = ?");
+        $stmt = $conexion->getConexion()->prepare(
+            <<<EOD
+            SELECT b.*, c.name AS category_name, 
+            b.quantity - (SELECT COUNT(*) FROM lending WHERE book_id = b.ISBN and returned = 0) AS availables 
+            FROM book b JOIN category c ON b.category_id = c.id WHERE isbn = ?
+            EOD);
         $stmt->execute([$isbn]);
         $resultado = $stmt->fetch();
         if($resultado == null) {
@@ -177,6 +182,48 @@ class Libro {
             date_create()->format('Y-m-d H:i:s'),
             $libro->getIsbn()
         ]);
+    }
+
+    public static function esFavorito($user, $isbn) {
+        $conexion = new Conexion();
+        $stmt = $conexion->getConexion()->prepare("SELECT 1 FROM favorite WHERE user_id = ? AND book_id = ?");
+        $stmt->execute([$user, $isbn]);
+        return $stmt->rowCount();
+    }
+
+    public static function agregarFavorito($user, $isbn) {
+        $conexion = new Conexion();
+        $stmt = $conexion->getConexion()->prepare("INSERT INTO favorite VALUES (?, ?)");
+        $stmt->execute([$user, $isbn]);
+    }
+
+    public static function eliminarFavorito($user, $isbn) {
+        $conexion = new Conexion();
+        $stmt = $conexion->getConexion()->prepare("DELETE FROM favorite WHERE user_id = ? AND book_id = ?");
+        $stmt->execute([$user, $isbn]);
+    }
+
+    public static function getFavoritos($user, $page) {
+        $libros = array();
+        $filas = 2;
+        $offset = ($page - 1) * $filas;
+        $conexion = new Conexion();
+        $stmt = $conexion->getConexion()->prepare(
+            <<<EOD
+            SELECT ISBN, name, author, description FROM book b JOIN favorite f ON b.ISBN = f.book_id WHERE f.user_id = ? 
+            LIMIT $filas OFFSET $offset
+            EOD
+        );
+        $stmt->execute([$user]);
+        while ($resultado = $stmt->fetch()) {
+            array_push($libros, new Libro(
+                $resultado['ISBN'],
+                $resultado['name'],
+                $resultado['author'],
+                $resultado['description']
+            ));
+        }
+        return $libros;
     }
 
     /* GETTERS */

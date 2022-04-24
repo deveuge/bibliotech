@@ -56,6 +56,7 @@ use Clases\Utils\Paginacion;
         echo $blade->view()->make('libro/editar', compact('libro', 'categorias'))->render();
     } else {
         $libro = Libro::findLibro($_GET["id"]);
+        $esFavorito = Libro::esFavorito($_SESSION['usuario']->getUsername(), $libro->getIsbn());
         $alertMessage = getAlertaSolicitudPrestamo();
         $alertMessage = getAlertaDevolucionPrestamo();
         $alertMessage = getAlertaLibro();
@@ -66,7 +67,7 @@ use Clases\Utils\Paginacion;
             $filtro = new FiltroPrestamo(null, $libro->getIsbn(), 'assigned_return_date', 'ASC');
             $prestamos = Prestamo::list($filtro);
             $paginacion = new Paginacion(Prestamo::countList($filtro), $filtro->getPagina());
-            echo $blade->view()->make('libro/ver' , compact('libro', 'categorias', 'prestamos', 'paginacion', 'alertMessage'))->render();
+            echo $blade->view()->make('libro/ver' , compact('libro', 'esFavorito', 'categorias', 'prestamos', 'paginacion', 'alertMessage'))->render();
         }
     }
 

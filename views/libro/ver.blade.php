@@ -11,14 +11,28 @@
 			<div class="col-12 card p-4 border-0 my-4">
 				<div class="row" id="libro-info">
 					<div class="col-12 col-lg-4">
-						<img src="https://covers.openlibrary.org/b/isbn/{{ $libro->getIsbn() }}-L.jpg" class="img-fluid">
-						@if ($libro->getDisponibles() > 0)
-							<button class="btn btn-primary my-3 mb-lg-0 px-5 text-light" data-bs-toggle="modal" data-bs-target="#solicitudModal">Solicitar libro</button>
-						@else
-							<span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" title="Solicitud no disponible">
-								<button class="btn btn-dark my-3 mb-lg-0 px-5 text-light disabled">Solicitar libro</button>
-							</span>
-						@endif
+						<div>
+							<img src="https://covers.openlibrary.org/b/isbn/{{ $libro->getIsbn() }}-L.jpg" class="img-fluid">
+							<div class="d-grid gap-2 my-3 mb-lg-0 mx-2">
+								@if ($libro->getDisponibles() > 0)
+									<button class="btn btn-primary px-5 w-100 text-light" data-bs-toggle="modal" data-bs-target="#solicitudModal">Solicitar libro</button>
+								@else
+									<span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" title="Solicitud no disponible">
+										<button class="btn btn-dark px-5 w-100 text-light disabled">Solicitar libro</button>
+									</span>
+								@endif
+								<form action="favorito.php" method="POST">
+									<input type="hidden" name="isbn" value="{{ $libro->getIsbn() }}" />
+								@if ($esFavorito)
+									<input type="hidden" name="accion" value="eliminar"/>
+									<button class="btn btn-outline-danger px-5 w-100">Eliminar de favoritos</button>
+								@else
+									<input type="hidden" name="accion" value="agregar"/>
+									<button class="btn btn-danger px-5 w-100 text-light">Añadir a favoritos</button>
+								@endif
+								</form>
+							</div>
+						</div>
 					</div>
 					<div class="col-12 col-lg-8">
 						<div class="mt-2 mt-lg-0 text-center text-lg-start">
@@ -56,12 +70,10 @@
 								<strong>{{ $libro->getDisponibles() }}</strong>
 							</div>
 						</div>
+						@if($libro->getDescripcion())
+						<blockquote class="mt-4">{{ $libro->getDescripcion() }}</blockquote>
+						@endif
 					</div>
-					@if($libro->getDescripcion())
-					<div class="col-12 mt-3 mt-lg-0 offset-lg-4 col-lg-8">
-						<blockquote>{{ $libro->getDescripcion() }}</blockquote>
-					</div>
-					@endif
 				</div>
 			</div>
 

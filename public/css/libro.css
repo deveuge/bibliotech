@@ -51,7 +51,7 @@ h5.titulo:not(.clear):after {
     background-color: #e7e7e7;
 }
 
-#libro-info button:hover {
+#libro-info button[data-bs-target="#solicitudModal"]:hover {
     background-color: transparent;
     color: var(--bs-primary) !important;
     border-color: var(--bs-primary);

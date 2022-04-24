@@ -55,3 +55,12 @@ CREATE TABLE `lending` (
   CONSTRAINT `fk_lending_book_id` FOREIGN KEY (`book_id`) REFERENCES `book` (`ISBN`),
   CONSTRAINT `fk_lending_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`username`)
 );
+
+-- TABLA FAVORITOS
+CREATE TABLE `favorite` (
+  `user_id` varchar(255) NOT NULL,
+  `book_id` varchar(255) NOT NULL,
+  PRIMARY KEY (`user_id`, `book_id`),
+  CONSTRAINT `fk_favorites_book_id` FOREIGN KEY (`book_id`) REFERENCES `book` (`ISBN`),
+  CONSTRAINT `fk_favorites_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`username`)
+);

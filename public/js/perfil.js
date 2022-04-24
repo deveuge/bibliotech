@@ -1,3 +1,15 @@
+/* Cargar favoritos */
+$("#cargar-mas").on("click", function(e) {
+    jaxon_cargarFavoritos(username, $(this).attr("data-page"));
+    $(this).attr("data-page", parseInt($(this).attr("data-page")) + 1);
+});
+
+$("body").on("click", ".eliminar-favorito", function(e) {
+    jaxon_eliminarFavorito($(this).attr("data-isbn"));
+    $('[data-bs-toggle="tooltip"]').tooltip('hide');
+    $('#contador-favoritos').text(parseInt($('#contador-favoritos').text()) - 1);
+});
+
 let tabEl = document.querySelector('#estadisticas-tab')
 tabEl.addEventListener('shown.bs.tab', function (event) {
     /* Contadores */

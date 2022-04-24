@@ -30,17 +30,20 @@ class Estadisticas {
         $conexion = new Conexion();
         $stmt = $conexion->getConexion()->prepare(
             <<<EOD
-            SELECT COUNT(DISTINCT(b.name)) AS libros, COUNT(DISTINCT(b.author)) AS autores, (SELECT COUNT(*) FROM lending WHERE user_id = ? AND returned = 0) AS prestamos 
+            SELECT COUNT(DISTINCT(b.name)) AS libros, 
+            COUNT(DISTINCT(b.author)) AS autores, 
+            (SELECT COUNT(*) FROM favorite WHERE user_id = ?) AS favoritos, 
+            (SELECT COUNT(*) FROM lending WHERE user_id = ? AND returned = 0) AS prestamos 
             FROM lending l JOIN book b ON l.book_id=b.ISBN 
             WHERE user_id = ? 
             EOD
         );
-        $stmt->execute([$user, $user]);
+        $stmt->execute([$user, $user, $user]);
         $resultado = $stmt->fetch();
         return new Estadisticas(
             $resultado['libros'],
             $resultado['autores'],
-            0, // TODO
+            $resultado['favoritos'],
             $resultado['prestamos'],
             Estadisticas::consultarCategoriasFavoritas($user),
             Estadisticas::consultarLibrosLeidos($user)
