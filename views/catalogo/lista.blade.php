@@ -94,6 +94,10 @@
 				$('#solicitud-isbn').val($(e.relatedTarget).data('target-isbn'));
 			});
 		});
+
+		$('button[type="reset"]').on('click', function() {
+			$("#texto").attr("value", "");
+		});
 	</script>
 </body>
 </html>
