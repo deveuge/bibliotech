@@ -211,6 +211,12 @@ tbody > tr > td:last-of-type {
     text-align: right;
 }
 
+/* ERRORES */
+#img-error {
+    max-width: 700px;
+    margin: auto;
+}
+
 /* FOOTER */
 footer a:hover {
     color: var(--bs-primary) !important;

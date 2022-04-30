@@ -10,7 +10,9 @@
                     <th scope="col">Fecha préstamo</th>
                     <th scope="col">Fecha devolución</th>
                     <th scope="col">Estado</th>
+                    @if($_SESSION['usuario']->esModerador())
                     <th></th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -21,11 +23,15 @@
                     <td>{{ $prestamo->getFechaCreacionPrestamo() }}</td>
                     <td>{{ $prestamo->getFechaAsignadaDevolucion() }}</td>
                     <td>{{ $prestamo->getEstado() }}</td>
+                    @if($_SESSION['usuario']->esModerador())
                     <td>
                         <span class="d-inline-block" data-bs-toggle="tooltip" title="Realizar devolución">
                             <a href="#" data-target-user="{{ $prestamo->getUsuario()->getUsername() }}" data-target-name="{{ $prestamo->getUsuario()->getNombre() }}" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#devolucionModal"><i class="fas fa-undo"></i></a>
                         </span>
                     </td>
+                    @else
+                    <td class="d-none"></td>
+                    @endif
                 </tr>
                 @endforeach
             </tbody>

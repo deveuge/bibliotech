@@ -4,6 +4,7 @@
 
     use Clases\Libro;
     use Clases\Prestamo;
+    use Clases\Utils\Funciones;
 
     if(!empty($_POST) && isset($_POST['accion'])) {
         switch($_POST['accion']) {
@@ -16,6 +17,7 @@
                 realizarSolicitud();
                 break;
             case "devolver":
+                Funciones::comprobarAccesoModerador();
                 realizarDevolucion();
                 break;
         }

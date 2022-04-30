@@ -5,6 +5,20 @@ use \DateInterval;
 
 class Funciones {
 
+    public static function comprobarAccesoModerador() {
+        if(!$_SESSION['usuario']->esModerador()) {
+            header("Location: error.php?code=403");
+            exit();
+        }
+    }
+
+    public static function comprobarError404($obj) {
+        if($obj == null) {
+            header("Location: error.php?code=404");
+            exit();
+        }
+    }
+
     public static function getFechaDevolucion(){
         $date = new DateTime();
         $date->add(new DateInterval('P30D'));

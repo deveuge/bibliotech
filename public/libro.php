@@ -2,19 +2,20 @@
     require_once '../vendor/autoload.php';
     require_once '../src/Utils/Blade.php';
 
-use Clases\Utils\Alert;
-use Clases\Categoria;
-use Clases\Filtros\FiltroPrestamo;
-use Clases\Libro;
-use Clases\Prestamo;
-use Clases\Utils\Paginacion;
-use Clases\Utils\Funciones;
+    use Clases\Utils\Alert;
+    use Clases\Categoria;
+    use Clases\Filtros\FiltroPrestamo;
+    use Clases\Libro;
+    use Clases\Prestamo;
+    use Clases\Utils\Paginacion;
+    use Clases\Utils\Funciones;
 
     $libro = new Libro();
     $categorias = Categoria::list();
     $alertMessage = null;
 
     if(!empty($_POST) && isset($_POST['accion'])) {
+        Funciones::comprobarAccesoModerador();
         $libro = new Libro (
             $_POST['isbn'],
             $_POST['titulo'],
@@ -54,15 +55,18 @@ use Clases\Utils\Funciones;
         }
     }
     elseif(isset($_GET["crear"])) {
+        Funciones::comprobarAccesoModerador();
         echo $blade->view()->make('libro/editar', compact('libro', 'categorias'))->render();
     } else {
         $libro = Libro::findLibro($_GET["id"]);
+        Funciones::comprobarError404($libro);
         $esFavorito = Libro::esFavorito($_SESSION['usuario']->getUsername(), $libro->getIsbn());
         $alertMessage = Funciones::getAlertaSolicitudPrestamo();
         $alertMessage = getAlertaDevolucionPrestamo();
         $alertMessage = getAlertaLibro();
 
         if(isset($_GET["editar"])) {
+            Funciones::comprobarAccesoModerador();
             echo $blade->view()->make('libro/editar' , compact('libro', 'categorias'))->render();
         } else {
             $filtro = new FiltroPrestamo(null, $libro->getIsbn(), 'assigned_return_date', 'ASC');

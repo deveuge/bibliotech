@@ -1,3 +1,4 @@
+@if($_SESSION['usuario']->esModerador())
 <div class="modal fade" id="devolucionModal" tabindex="-1" aria-labelledby="devolucionModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -18,3 +19,4 @@
         </div>
     </div>
 </div>
+@endif

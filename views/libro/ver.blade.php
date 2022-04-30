@@ -83,6 +83,7 @@
 				@include('libro.fragmentos.prestamos')
 			</div>
 
+			@if($_SESSION['usuario']->esModerador())
 			<!-- Herramientas administración -->
 			<div class="col-12 card p-4 border-0 my-4">
 				<h5 class="titulo mb-2"><span>Herramientas de administración</span></h5>
@@ -91,6 +92,7 @@
 					<a href="?id={{$libro->getIsbn()}}&editar" class="btn btn-primary text-light">Editar libro</a>
 				</div>
 			</div>
+			@endif
 		</div>
 	</div>
 

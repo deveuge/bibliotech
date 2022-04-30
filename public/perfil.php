@@ -9,6 +9,7 @@
     use Clases\Usuario;
     use Clases\Libro;
     use Clases\Prestamo;
+    use Clases\Utils\Funciones;
     use Clases\Utils\Paginacion;
 
     use Jaxon\Jaxon;
@@ -63,14 +64,24 @@
         if(isset($_GET["editar"])) {
             echo $blade->view()->make('usuario/editar', compact('usuario'))->render();
         } else {
-            $filtro = new FiltroPrestamo($usuario->getUsername(), null, 1);
-            $prestamos = Prestamo::list($filtro);
-            $paginacion = new Paginacion(Prestamo::countList($filtro), $filtro->getPagina());
-            $favoritos = Libro::getFavoritos($usuario->getUsername(), 1);
-            $existenMasFavoritos = Libro::getFavoritos($usuario->getUsername(), 2);
-            $estadisticas = Estadisticas::getEstadisitcas($usuario->getUsername());
-            echo $blade->view()->make('usuario/ver', compact('usuario', 'prestamos', 'paginacion', 'favoritos', 'existenMasFavoritos', 'estadisticas', 'jaxon'))->render();
+            if(isset($_GET["id"])) {
+                $usuario = Usuario::findUsuarioPorUsername($_GET["id"]);
+                Funciones::comprobarError404($usuario);
+            }
+            cargarVistaPerfil($usuario);
         }
+    }
+
+    function cargarVistaPerfil($usuario) {
+        global $blade;
+        global $jaxon;
+        $filtro = new FiltroPrestamo($usuario->getUsername(), null, 1);
+        $prestamos = Prestamo::list($filtro);
+        $paginacion = new Paginacion(Prestamo::countList($filtro), $filtro->getPagina());
+        $favoritos = Libro::getFavoritos($usuario->getUsername(), 1);
+        $existenMasFavoritos = Libro::getFavoritos($usuario->getUsername(), 2);
+        $estadisticas = Estadisticas::getEstadisitcas($usuario->getUsername());
+        echo $blade->view()->make('usuario/ver', compact('usuario', 'prestamos', 'paginacion', 'favoritos', 'existenMasFavoritos', 'estadisticas', 'jaxon'))->render();
     }
 
 ?>

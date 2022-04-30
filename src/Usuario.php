@@ -35,6 +35,23 @@ class Usuario {
         );
     }
 
+    public static function findUsuarioPorUsername($username) {
+        $conexion = new Conexion();
+        $stmt = $conexion->getConexion()->prepare("SELECT * FROM user WHERE username = ?");
+        $stmt->execute([$username]);
+        $resultado = $stmt->fetch();
+        if($resultado == null) {
+            return null;
+        }
+        return new Usuario(
+            $resultado['username'],
+            $resultado['name'],
+            $resultado['email'],
+            $resultado['image'],
+            $resultado['role']
+        );
+    }
+
     public static function updateUsuario($usuario) {
         $conexion = new Conexion();
         $stmt = $conexion->getConexion()->prepare("UPDATE user SET name = ?, image = ? WHERE username = ?");
@@ -115,6 +132,10 @@ class Usuario {
             default:
                 return 'Alumno';
         }
+    }
+
+    public function esModerador() {
+        return $this->rol == 'MOD';
     }
 
     /* SETTERS */

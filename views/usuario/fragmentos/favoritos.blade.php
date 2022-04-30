@@ -13,10 +13,12 @@
                         <h5 class="titulo"><span>{{ $favorito->getAutor() }}</span></h5>
                     </div>
                     <p class="card-text">{{ $favorito->getDescripcion() }}</p>
+                    @if( !isset($_GET['id']) || $_SESSION['usuario']->getUsername() == $_GET['id'] )
                     <div class="gap-1 d-flex justify-content-end">
                         <button type="button" class="btn btn-sm btn-outline-danger eliminar-favorito" data-isbn="{{ $favorito->getIsbn() }}" data-bs-toggle="tooltip" title="Eliminar favorito"><span class="fas fa-times fa-fw"></span></button>
                         <a href="libro.php?id={{ $favorito->getIsbn() }}" class="btn btn-sm btn-primary text-light" data-bs-toggle="tooltip" title="Ver detalle"><span class="fas fa-info fa-fw"></span></a>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

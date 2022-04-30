@@ -122,7 +122,7 @@
 }
 
 #libros-actuales .card:hover {
-    background-color: var(--bs-dark);
+    background-color: var(--bs-primary);
     color: var(--bs-light);
     transform: scale(1.025);
 }

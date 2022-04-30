@@ -15,9 +15,11 @@
 						<h3>Catálogo</h3>
 						<h5 class="mb-2 mb-sm-0">Bibliotech tiene {{ $librosTotal }} libros en su biblioteca</h5>
 					</span>
+					@if($_SESSION['usuario']->esModerador())
 					<div class="col d-flex justify-content-end">
 						<a href="libro.php?crear" class="btn btn-outline-primary">Nuevo libro</a>
 					</div>
+					@endif
 				</div>
 
 				<form action="catalogo.php" method="POST" class="row" id="filtros">
