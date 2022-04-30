@@ -30,7 +30,7 @@
 						<select class="form-select form-select-sm" id="categoria" name="categoria">
 							<option value="" selected>Seleccionar categoría</option>
 							@foreach ($categorias as $categoria)
-							<option value="{{ $categoria->getId() }}">{{ $categoria->getNombre() }}</option>
+							<option value="{{ $categoria->getId() }}" {{ $categoria->getId() == $filtro->getCategoria() ? 'selected' : '' }}>{{ $categoria->getNombre() }}</option>
 							@endforeach
 						</select>
 					</div>
@@ -97,6 +97,7 @@
 
 		$('button[type="reset"]').on('click', function() {
 			$("#texto").attr("value", "");
+			$('#categoria option').attr('selected',false);
 		});
 	</script>
 </body>

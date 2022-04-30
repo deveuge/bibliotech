@@ -107,6 +107,10 @@ class FiltroLibro {
         $this->texto = $texto;
     }
 
+    public function setCategoria($categoria) {
+        $this->categoria = $categoria;
+    }
+
     public function setPagina($pagina) {
         $this->pagina = $pagina;
     }

@@ -16,6 +16,9 @@
     if(isset($_POST['search'])) {
         $filtro->setTexto($_POST['search']);
     }
+    if(isset($_GET['cat'])) {
+        $filtro->setCategoria($_GET['cat']);
+    }
     $paginacion = new Paginacion(Libro::countList($filtro), 1);
 
     if(isset($_GET['booked']) && isset($_SESSION['filtro_catalogo'])) {

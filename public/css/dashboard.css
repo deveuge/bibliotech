@@ -118,6 +118,17 @@
 /* LIBROS ACTUALES */
 #libros-actuales .card {
     overflow: hidden;
+    transition: all 0.15s linear;
+}
+
+#libros-actuales .card:hover {
+    background-color: var(--bs-dark);
+    color: var(--bs-light);
+    transform: scale(1.025);
+}
+
+#libros-actuales .card:hover .text-muted {
+    color: var(--bs-white) !important;
 }
 
 #libros-actuales .card-body {

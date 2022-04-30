@@ -24,7 +24,7 @@
 				<div class="row row-cols-2 row-cols-md-5 g-4" id="categorias">
 					@foreach ($categorias as $categoria)
 					<div class="col">
-						<a href="catalogo.php" class="card">
+						<a href="catalogo.php?cat={{ $categoria->getId() }}" class="card">
 							<img src="{{ $categoria->getImagen() }}" alt="{{ $categoria->getNombre() }}">
 							<h5>{{ $categoria->getNombre() }}</h5>
 						</a>
