@@ -73,6 +73,11 @@
 		let librosLeidosNombres = {!! json_encode($estadisticas->getLibrosLeidosNombres()) !!};
 		let librosLeidosValores = {!! json_encode($estadisticas->getLibrosLeidosValores()) !!};
 		let username = {!! json_encode($usuario->getUsername()) !!};
+
+		$("body").on("click", ".page-link", function(e) {
+			e.preventDefault();
+			jaxon_paginar(username, $(this).attr("data-page"));
+		});
 	</script>
     <script src="js/perfil.js"></script>
 

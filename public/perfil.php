@@ -14,6 +14,21 @@
 
     use Jaxon\Jaxon;
     use Jaxon\Response\Response;
+
+    function paginar($usuario, $pagina) {
+        global $blade;
+        if($usuario == null) {
+            $usuario = $_SESSION['usuario']->getUsername();
+        }
+        $response = new Response();
+        $filtro = new FiltroPrestamo($usuario, null, $pagina);
+        $prestamos = Prestamo::list($filtro);
+        $paginacion = new Paginacion(Prestamo::countList($filtro), $filtro->getPagina());
+
+        $viewRendered = $blade->view()->make('usuario/fragmentos/prestamos', compact('prestamos', 'paginacion'))->render();
+        $response->assign('prestamos', 'innerHTML', $viewRendered);
+        return $response;
+    }
     
     function cargarFavoritos($user, $page) {
         global $blade;
@@ -38,6 +53,7 @@
         return $response;
     }
 
+    $jaxon->register(Jaxon::CALLABLE_FUNCTION, "paginar");
     $jaxon->register(Jaxon::CALLABLE_FUNCTION, "cargarFavoritos");
     $jaxon->register(Jaxon::CALLABLE_FUNCTION, "eliminarFavorito");
     if($jaxon->canProcessRequest()){
