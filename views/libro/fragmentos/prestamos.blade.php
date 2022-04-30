@@ -25,7 +25,6 @@
                         <span class="d-inline-block" data-bs-toggle="tooltip" title="Realizar devolución">
                             <a href="#" data-target-user="{{ $prestamo->getUsuario()->getUsername() }}" data-target-name="{{ $prestamo->getUsuario()->getNombre() }}" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#devolucionModal"><i class="fas fa-undo"></i></a>
                         </span>
-                        <a href="#" class="btn btn-outline-danger" data-bs-toggle="tooltip" title="Emitir multa"><i class="fas fa-file-signature"></i></a>
                     </td>
                 </tr>
                 @endforeach
