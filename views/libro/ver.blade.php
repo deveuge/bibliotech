@@ -88,7 +88,7 @@
 			<div class="col-12 card p-4 border-0 my-4">
 				<h5 class="titulo mb-2"><span>Herramientas de administración</span></h5>
 				<div class="d-flex justify-content-end">
-					<a href="?eliminar" class="btn btn-outline-danger mx-2">Eliminar libro</a>
+					<a href="?eliminar" class="btn btn-outline-danger mx-2" data-bs-toggle="modal" data-bs-target="#eliminacionModal">Eliminar libro</a>
 					<a href="?id={{$libro->getIsbn()}}&editar" class="btn btn-primary text-light">Editar libro</a>
 				</div>
 			</div>
@@ -98,6 +98,7 @@
 
 	@include('libro.fragmentos.modalSolicitud')
 	@include('libro.fragmentos.modalDevolucion')
+	@include('libro.fragmentos.modalEliminacion')
 
     @include('plantillas.footer')
     @include('plantillas.scripts')

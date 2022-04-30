@@ -184,6 +184,12 @@ class Libro {
         ]);
     }
 
+    public static function eliminarLibro($isbn) {
+        $conexion = new Conexion();
+        $stmt = $conexion->getConexion()->prepare("DELETE FROM book WHERE isbn = ?");
+        $stmt->execute([$isbn]);
+    }
+
     public static function esFavorito($user, $isbn) {
         $conexion = new Conexion();
         $stmt = $conexion->getConexion()->prepare("SELECT 1 FROM favorite WHERE user_id = ? AND book_id = ?");

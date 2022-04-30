@@ -52,8 +52,8 @@ CREATE TABLE `lending` (
   `real_return_date` datetime,
   `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_lending_book_id` FOREIGN KEY (`book_id`) REFERENCES `book` (`ISBN`),
-  CONSTRAINT `fk_lending_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`username`)
+  CONSTRAINT `fk_lending_book_id` FOREIGN KEY (`book_id`) REFERENCES `book` (`ISBN`) ON DELETE CASCADE,
+  CONSTRAINT `fk_lending_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`username`) ON DELETE CASCADE
 );
 
 -- TABLA FAVORITOS
@@ -61,6 +61,6 @@ CREATE TABLE `favorite` (
   `user_id` varchar(255) NOT NULL,
   `book_id` varchar(255) NOT NULL,
   PRIMARY KEY (`user_id`, `book_id`),
-  CONSTRAINT `fk_favorites_book_id` FOREIGN KEY (`book_id`) REFERENCES `book` (`ISBN`),
-  CONSTRAINT `fk_favorites_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`username`)
+  CONSTRAINT `fk_favorites_book_id` FOREIGN KEY (`book_id`) REFERENCES `book` (`ISBN`) ON DELETE CASCADE,
+  CONSTRAINT `fk_favorites_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`username`) ON DELETE CASCADE
 );

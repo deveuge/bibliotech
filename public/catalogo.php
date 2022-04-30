@@ -64,6 +64,7 @@
     $_SESSION['filtro_catalogo'] = serialize($filtro);
     $librosTotal = Libro::countAll();
     $categorias = Categoria::list();
+    $alertMessage = Funciones::getAlertaLibro();
     $alertMessage = Funciones::getAlertaSolicitudPrestamo();
     echo $blade->view()->make('catalogo/lista', compact('librosTotal', 'categorias', 'resultados', 'paginacion', 'filtro', 'alertMessage', 'jaxon'))->render();
 ?>
