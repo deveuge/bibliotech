@@ -16,17 +16,18 @@
 
     if(!empty($_POST) && isset($_POST['accion'])) {
         Funciones::comprobarAccesoModerador();
-        $url = "Location: libro.php?id=" . $libro->getIsbn();
         
         switch($_POST['accion']) {
             // Nuevo libro
             case 'crear':
                 $libro = getInformacionLibro();
+                $url = "Location: libro.php?id=" . $libro->getIsbn();
                 crearLibro();
                 break;
             // Actualizar libro
             case 'modificar': 
                 $libro = getInformacionLibro();
+                $url = "Location: libro.php?id=" . $libro->getIsbn();
                 Libro::updateLibro($libro);
                 header($url . "&updated=1");
                 break;

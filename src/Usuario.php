@@ -10,12 +10,22 @@ class Usuario {
     private $imagen;
     private $rol;
 
-    public function __construct($u, $n, $e, $i, $r){
-        $this->username = $u;
-        $this->nombre = $n;
-        $this->email = $e;
-        $this->imagen = $i;
-        $this->rol = $r;
+    public function __construct(){
+        $num = func_num_args();
+        switch ($num) {
+            case 3:
+                $this->username = func_get_arg(0);
+                $this->nombre = func_get_arg(1);
+                $this->imagen = func_get_arg(2);
+                break;
+            case 5:
+                $this->username = func_get_arg(0);
+                $this->nombre = func_get_arg(1);
+                $this->email = func_get_arg(2);
+                $this->imagen = func_get_arg(3);
+                $this->rol = func_get_arg(4);
+                break;
+        }
     }
 
     public static function findUsuario($email, $password) {

@@ -65,6 +65,7 @@
 
 	</div>
 
+	@include('usuario.fragmentos.modalDevolucion')
     @include('plantillas.footer')
     @include('plantillas.scripts')
 	<script>
@@ -77,6 +78,14 @@
 		$("body").on("click", ".page-link", function(e) {
 			e.preventDefault();
 			jaxon_paginar(username, $(this).attr("data-page"));
+		});
+		
+		$(document).ready(function () {
+			$("#devolucionModal").on("show.bs.modal", function (e) {
+				$('#devolucion-book').text($(e.relatedTarget).data('target-book'));
+				$('#devolucion-author').text($(e.relatedTarget).data('target-author'));
+				$('#isbn').val($(e.relatedTarget).data('target-isbn'));
+			});
 		});
 	</script>
     <script src="js/perfil.js"></script>

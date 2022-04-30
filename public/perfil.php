@@ -14,6 +14,8 @@
 
     use Jaxon\Jaxon;
     use Jaxon\Response\Response;
+    
+    $alertMessage = null;
 
     function paginar($usuario, $pagina) {
         global $blade;
@@ -83,6 +85,7 @@
             if(isset($_GET["id"])) {
                 $usuario = Usuario::findUsuarioPorUsername($_GET["id"]);
                 Funciones::comprobarError404($usuario);
+                $alertMessage = Funciones::getAlertaDevolucionPrestamo();
             }
             cargarVistaPerfil($usuario);
         }
@@ -91,13 +94,14 @@
     function cargarVistaPerfil($usuario) {
         global $blade;
         global $jaxon;
+        global $alertMessage;
         $filtro = new FiltroPrestamo($usuario->getUsername(), null, 1);
         $prestamos = Prestamo::list($filtro);
         $paginacion = new Paginacion(Prestamo::countList($filtro), $filtro->getPagina());
         $favoritos = Libro::getFavoritos($usuario->getUsername(), 1);
         $existenMasFavoritos = Libro::getFavoritos($usuario->getUsername(), 2);
         $estadisticas = Estadisticas::getEstadisitcas($usuario->getUsername());
-        echo $blade->view()->make('usuario/ver', compact('usuario', 'prestamos', 'paginacion', 'favoritos', 'existenMasFavoritos', 'estadisticas', 'jaxon'))->render();
+        echo $blade->view()->make('usuario/ver', compact('usuario', 'prestamos', 'paginacion', 'favoritos', 'existenMasFavoritos', 'estadisticas', 'alertMessage', 'jaxon'))->render();
     }
 
 ?>

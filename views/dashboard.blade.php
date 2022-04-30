@@ -83,6 +83,7 @@
 					<h5>Estos son los libros que tiene en préstamo</h5>
 				</div>
 				<!-- Libros actuales -->
+				@if (sizeOf($prestamos) > 0)
 				<div class="row row-cols-1 row-cols-md-2 g-4" id="libros-actuales">
 					@foreach ($prestamos as $prestamo)
 					<div class="col">
@@ -114,6 +115,9 @@
 						<a href="perfil.php" class="btn btn-outline-primary btn-sm ver-mas rounded-pill">Ver todos</a>
 					</div>
 				</div>
+				@else
+				<p class="card card-header text-muted text-center rounded mb-3">Sin registros</p>
+				@endif
 			</div>
 
 		</div>

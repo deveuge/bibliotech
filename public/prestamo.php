@@ -16,9 +16,15 @@
                 $url = "Location: libro.php?id=" . $_POST['isbn'] . "&booked=";
                 realizarSolicitud();
                 break;
+            case "devolver-perfil":
+                Funciones::comprobarAccesoModerador();
+                realizarDevolucion();
+                header("Location: perfil.php?id=" . $_POST['user'] . "&returned=" . 1); 
+                break;
             case "devolver":
                 Funciones::comprobarAccesoModerador();
                 realizarDevolucion();
+                header("Location: libro.php?id=" . $_POST['isbn'] . "&returned=" . 1); 
                 break;
         }
     }
@@ -52,13 +58,14 @@
         // Comprobar si existe el libro
         if(!$libro) {
             return header($url . 3);
+            exit();
         }
         // Comprobar si el usuario tiene el libro ya en préstamo
         if(!Prestamo::existePrestamoActivo($user, $isbn)) {
             return header($url . 2);
+            exit();
         }
         // Guardar préstamo
         Prestamo::devolverPrestamo($user, $isbn);
-        header($url . 1); 
     }
 ?>

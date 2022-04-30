@@ -5,6 +5,7 @@
         <table class="table table-hover align-middle">
             <thead>
                 <tr>
+                    <th scope="col" style="width: 2rem"></th>
                     <th scope="col">Usuario</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Fecha préstamo</th>
@@ -18,7 +19,10 @@
             <tbody>
                 @foreach ($prestamos as $prestamo)
                 <tr class="{{ $prestamo->esFueraDePlazo() ? 'table-danger' : '' }}">
-                    <th scope="row">{{ $prestamo->getUsuario()->getUsername() }}</th>
+                    <td><img src="{{ $prestamo->getUsuario()->getImagen() }}" class="user-image"></td>
+                    <th scope="row">
+                        <a href="perfil.php?id={{ $prestamo->getUsuario()->getUsername() }}">{{ $prestamo->getUsuario()->getUsername() }}</a>
+                    </th>
                     <td>{{ $prestamo->getUsuario()->getNombre() }}</td>
                     <td>{{ $prestamo->getFechaCreacionPrestamo() }}</td>
                     <td>{{ $prestamo->getFechaAsignadaDevolucion() }}</td>

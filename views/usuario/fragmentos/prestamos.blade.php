@@ -21,6 +21,11 @@
                     <td>{{ $prestamo->getFechaAsignadaDevolucion() }}</td>
                     <td>{{ $prestamo->getEstado() }}</td>
                     <td>
+                        @if($_SESSION['usuario']->esModerador() && $prestamo->getDevuelto() != 1)
+                        <span class="d-inline-block" data-bs-toggle="tooltip" title="Realizar devolución">
+                            <a href="#" data-target-isbn="{{ $prestamo->getLibro()->getIsbn() }}" data-target-book="{{ $prestamo->getLibro()->getNombre() }}" data-target-author="{{ $prestamo->getLibro()->getAutor() }}" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#devolucionModal"><i class="fas fa-undo"></i></a>
+                        </span>
+                        @endif
                         <a href="libro.php?id={{ $prestamo->getLibro()->getIsbn() }}" class="btn btn-outline-primary" data-bs-toggle="tooltip" title="Ver detalle"><i class="fas fa-fw fa-info"></i></a>
                     </td>
                 </tr>

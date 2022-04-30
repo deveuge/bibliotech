@@ -211,6 +211,10 @@ tbody > tr > td:last-of-type {
     text-align: right;
 }
 
+.table>:not(caption)>*>* {
+    max-width: 20rem;
+}
+
 /* ERRORES */
 #img-error {
     max-width: 700px;

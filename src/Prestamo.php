@@ -37,7 +37,7 @@ class Prestamo {
         while ($resultado = $stmt->fetch()) {
             array_push($resultados, new Prestamo(
                 $resultado['id'],
-                new Usuario($resultado['user_id'], $resultado['user_name'], null, null, null),
+                new Usuario($resultado['user_id'], $resultado['user_name'], $resultado['user_image']),
                 new Libro($resultado['book_id'], $resultado['book_name'], $resultado['book_author'], $resultado['book_description']),
                 $resultado['returned'],
                 $resultado['assigned_return_date'],
@@ -55,7 +55,7 @@ class Prestamo {
         $filas = $filter->getFilas();
         $offset = ($filter->getPagina() - 1) * $filas;
         return <<<EOD
-            SELECT l.*, u.name AS user_name, b.name AS book_name, b.author AS book_author, b.description AS book_description FROM lending l 
+            SELECT l.*, u.name AS user_name, u.image AS user_image, b.name AS book_name, b.author AS book_author, b.description AS book_description FROM lending l 
             JOIN user u ON l.user_id = u.username 
             JOIN book b ON l.book_id = b.isbn 
             $agregarWhere $agregarFiltros $agregarOrden 

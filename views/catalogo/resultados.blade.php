@@ -2,8 +2,8 @@
     <!-- Resultados -->
     <div class="col-12">
         <small class="text-muted">Se han encontrado {{ $paginacion->getTotalRegistros() }} resultados coincidentes</small>
-        <div class="table-responsive">
-            <table class="table table-hover align-middle">
+        <div class="table-responsive mb-3">
+            <table class="table table-hover align-middle mb-0">
                 <thead>
                     <tr>
                         <th scope="col">Título</th>
