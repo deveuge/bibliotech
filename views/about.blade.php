@@ -44,6 +44,8 @@
 								<li><a target="_blank" href="https://nickpiscitelli.github.io/Glider.js/">GliderJS</a> - Librería que proporciona un carusel ligero, responsivo, customizable, libre de dependencias y con scroll nativo del navegador.</li>
 								<li><a target="_blank" href="https://www.jaxon-php.org">Jaxon</a> - Librería PHP para crear aplicaciones web Ajax.</li>
 								<li><a target="_blank" href="https://jquery.com">jQuery</a> - Librería JavaScript rápida, pequeña y rica en funciones</li>
+								<li><a target="_blank" href="https://packagist.org/packages/yepsua/jquery4php">JQuery4PHP</a> - Interface de programación en PHP que aprovecha las capacidades de jQuery.</li>
+								<li><a target="_blank" href="http://jquery4php.sourceforge.net/index.php?section=plugins&module=jqValidate&method=about">JqValidate</a> - Plugin JQuery para la validación de formularios en el lado cliente.</li>
 								<li><a target="_blank" href="https://openlibrary.org/dev/docs/api/covers">Open Library Covers API</a> - API que permite acceder a las portadas de los libros disponibles en el repositorio de Open Library.</li>
 							</ul>
 						</div>

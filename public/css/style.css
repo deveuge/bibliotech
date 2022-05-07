@@ -230,6 +230,16 @@ label.error {
     padding: 0.25rem 0;
 }
 
+/* ACCORDION */
+.accordion-button:not(.collapsed) {
+    color: var(--bs-light);
+    background-color: var(--bs-primary);
+}
+
+.accordion-button:not(.collapsed)::after {
+    filter: brightness(10);
+}
+
 /* FOOTER */
 footer a:hover {
     color: var(--bs-primary) !important;
