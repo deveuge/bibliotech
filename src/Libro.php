@@ -211,7 +211,7 @@ class Libro {
 
     public static function getFavoritos($user, $page) {
         $libros = array();
-        $filas = 2;
+        $filas = 4;
         $offset = ($page - 1) * $filas;
         $conexion = new Conexion();
         $stmt = $conexion->getConexion()->prepare(
