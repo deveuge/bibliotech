@@ -7,7 +7,7 @@
 
     <div class="container-fluid contenedor-principal">
 		<div class="row justify-content-center">
-			<form action="libro.php" method="POST">
+			<form action="libro.php" method="POST" id="form">
 				<div class="col-12 card p-4 border-0 my-4">
 					@isset($_GET["crear"])
 					<div class="row titulo">
@@ -28,18 +28,18 @@
 								
 								<div class="input-group my-3 mb-lg-0 px-md-3">
 									<span class="input-group-text col-2 col-md-3 justify-content-center">ISBN</span>
-									<input type="text" class="form-control" id="isbn" name="isbn" placeholder="ISBN-10 o ISBN-13" value="{{ $libro->getIsbn() }}" {{ isset($_GET["editar"]) ? 'disabled' : ''}} autofocus required>
+									<input type="text" class="form-control" id="isbn" name="isbn" minlength="10" maxlength="13" placeholder="ISBN-10 o ISBN-13" value="{{ $libro->getIsbn() }}" {{ isset($_GET["editar"]) ? 'disabled' : ''}} autofocus required>
 								</div>
 							</div>
 							<div class="col-12 col-lg-8">
 								<div class="mt-2 mt-lg-0 text-center text-lg-start">
 									<div class="input-group input-group-lg mb-2">
 										<span class="input-group-text col-2 justify-content-center">Título</span>
-										<input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título del libro" value="{{ $libro->getNombre() }}" autofocus required>
+										<input type="text" class="form-control" id="titulo" name="titulo" maxlength="255" placeholder="Título del libro" value="{{ $libro->getNombre() }}" autofocus required>
 									</div>
 									<div class="input-group">
 										<span class="input-group-text col-2 justify-content-center">Autor</span>
-										<input type="text" class="form-control" id="autor" name="autor" placeholder="Autor del libro" value="{{ $libro->getAutor() }}" required>
+										<input type="text" class="form-control" id="autor" name="autor" maxlength="255" placeholder="Autor del libro" value="{{ $libro->getAutor() }}" required>
 									</div>
 									
 								</div>
@@ -58,7 +58,7 @@
 									<li class="list-group-item row">
 										<label for="paginas" class="col-12 col-md-9 col-form-label fw-bold">Número de páginas</label>
 										<div class="col-12 col-md-3">
-											<input type="number" class="form-control text-end" id="paginas" name="paginas" min="0" value="{{ $libro->getPaginas() }}">
+											<input type="number" class="form-control text-end" id="paginas" name="paginas" min="1" value="{{ $libro->getPaginas() }}" required>
 										</div>
 									</li>
 									<li class="list-group-item row">
@@ -104,7 +104,7 @@
 							@isset($_GET["editar"])
 							<a href="#" class="btn btn-outline-danger">Eliminar</a>
 							@endisset
-							<button type="submit" class="btn btn-primary text-light">Guardar</a>
+							<button type="submit" id="submit" class="btn btn-primary text-light">Guardar</a>
 						</div>
 					</div>
 				</div>
@@ -127,5 +127,11 @@
 		});
 	</script>
 
+	<?php
+		echo YsJQuery::newInstance()
+				->onClick()
+				->in("#submit")
+				->execute(YsJQValidate::build()->in('#form'));
+	?>
 </body>
 </html>

@@ -221,6 +221,15 @@ tbody > tr > td:last-of-type {
     margin: auto;
 }
 
+label.error {
+    display: block;
+    width: 100%;
+    font-size: 0.8rem;
+    color: var(--bs-danger);
+    line-height: 0.8rem;
+    padding: 0.25rem 0;
+}
+
 /* FOOTER */
 footer a:hover {
     color: var(--bs-primary) !important;

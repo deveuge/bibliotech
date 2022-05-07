@@ -14,6 +14,9 @@
 
     use Jaxon\Jaxon;
     use Jaxon\Response\Response;
+
+    YsJQueryAutoloader::register();
+    YsJQuery::usePlugin(YsJQueryConstant::PLUGIN_JQVALIDATE);
     
     $alertMessage = null;
 
@@ -68,7 +71,9 @@
             $alertMessage = new Alert("Las contraseñas no coinciden", "danger");
         } else {
             $usuario->setNombre($_POST['nombre']);
-            $usuario->setImagen($_POST['image']);
+            if(isset($_POST['image'])) {
+                $usuario->setImagen($_POST['image']);
+            }
             if (!empty($_POST['password'])) {
                 Usuario::updatePassword($usuario->getUsername(), $_POST['password']);
             }

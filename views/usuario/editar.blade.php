@@ -7,7 +7,7 @@
 
     <div class="container-fluid contenedor-principal">
         <div class="row justify-content-center">
-            <form action="perfil.php" method="POST">
+            <form action="perfil.php" method="POST" id="form">
                 <div class="col-12 card p-4 border-0 my-4">
                     <div class="row titulo mb-3">
                         <h3>Configuración</h3>
@@ -44,24 +44,24 @@
 
                     <div class="form-group mb-3">
                         <label for="nombre">Nombre completo</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre y apellidos" value="{{ $usuario->getNombre() }}">
+                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre y apellidos" value="{{ $usuario->getNombre() }}" required>
                     </div>
 
                     <div class="form-group row mb-3">
                         <div class="col-md-6">
                             <label for="password">Contraseña</label>
-                            <input type="password" class="form-control" id="password" name="password">
+                            <input type="password" class="form-control" id="password" minlength="6" name="password">
                         </div>
                         <div class="col-md-6">
                             <label for="password">Repetir contraseña</label>
-                            <input type="password" class="form-control" id="repeat-password" name="repeat-password">
+                            <input type="password" class="form-control" id="repeat-password" minlength="6" name="repeat-password">
                         </div>
                     </div>
                 </div>
 
                 <div class="col-12 card p-4 border-0 my-4">
                     <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary text-light">Guardar</a>
+                        <button type="submit" id="submit" class="btn btn-primary text-light">Guardar</a>
                     </div>
                 </div>
             </form>
@@ -70,5 +70,16 @@
 
     @include('plantillas.footer')
     @include('plantillas.scripts')
+
+    <?php
+		echo YsJQuery::newInstance()
+				->onClick()
+				->in("#submit")
+				->execute(YsJQValidate::build()->in('#form')
+                ->_rules([
+                    'repeat-password' => ['equalTo' => '#password']
+                ])
+            );
+	?>
 </body>
 </html>

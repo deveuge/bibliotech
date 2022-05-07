@@ -10,6 +10,9 @@
     use Clases\Utils\Paginacion;
     use Clases\Utils\Funciones;
 
+    YsJQueryAutoloader::register();
+    YsJQuery::usePlugin(YsJQueryConstant::PLUGIN_JQVALIDATE);
+
     $libro = new Libro();
     $categorias = Categoria::list();
     $alertMessage = null;
