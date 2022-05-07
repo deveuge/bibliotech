@@ -240,6 +240,23 @@ label.error {
     filter: brightness(10);
 }
 
+/* GLIDER JS */
+.glider {
+    scrollbar-width: none;
+}
+
+.glider::-webkit-scrollbar {
+    display: none;
+}
+
+.glider-slide img {
+    opacity: 0;
+    transition: opacity .1s ease;
+  }
+.glider-slide img.loaded {
+    opacity: 1;
+}
+
 /* FOOTER */
 footer a:hover {
     color: var(--bs-primary) !important;

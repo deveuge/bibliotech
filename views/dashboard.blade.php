@@ -55,7 +55,7 @@
 							<div class="glider">
 								@foreach ($ultimosLibros as $libro)
 								<a href="libro.php?id={{ $libro->getIsbn() }}" class="card">
-									<img src="https://covers.openlibrary.org/b/isbn/{{ $libro->getIsbn() }}-L.jpg"
+									<img data-src="https://covers.openlibrary.org/b/isbn/{{ $libro->getIsbn() }}-L.jpg"
 										class="card-img-top">
 									<p>
 										<strong>{{ $libro->getNombre() }}</strong>
