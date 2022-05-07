@@ -60,8 +60,8 @@
 					</div>
 					<form id="login-form" action="index.php" method="POST">
 						<div class="form-floating mb-3">
-							<input type="email" class="form-control" id="l-email" name="l-email" placeholder="Email" autofocus="autofocus" required>
-							<label for="l-email">Email</label>
+							<input type="text" class="form-control" id="l-usuario" name="l-usuario" placeholder="Usuario o email" autofocus="autofocus" required>
+							<label for="l-usuario">Usuario o email</label>
 						</div>
 						<div class="form-floating mb-3">
 							<input type="password" class="form-control" placeholder="Contraseña" id="l-password" name="l-password" required>

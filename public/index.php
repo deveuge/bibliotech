@@ -11,7 +11,7 @@
         switch($_POST['accion']) {
             // Realizar login
             case 'login':
-                $usuario = Usuario::findUsuario($_POST['l-email'], $_POST['l-password']);
+                $usuario = Usuario::findUsuario($_POST['l-usuario'], $_POST['l-password']);
                 $usuario 
                     ? $_SESSION['usuario'] = $usuario
                     : $alertMessage = new Alert("Login incorrecto, revise sus credenciales e inténtelo de nuevo", "danger");

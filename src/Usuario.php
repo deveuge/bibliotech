@@ -28,10 +28,10 @@ class Usuario {
         }
     }
 
-    public static function findUsuario($email, $password) {
+    public static function findUsuario($usuarioEmail, $password) {
         $conexion = new Conexion();
-        $stmt = $conexion->getConexion()->prepare("SELECT * FROM user WHERE email = ? AND password = ?");
-        $stmt->execute([$email, hash('sha256', $password)]);
+        $stmt = $conexion->getConexion()->prepare("SELECT * FROM user WHERE (email = ? OR username = ?) AND password = ?");
+        $stmt->execute([$usuarioEmail, $usuarioEmail, hash('sha256', $password)]);
         $resultado = $stmt->fetch();
         if($resultado == null) {
             return null;
