@@ -31,8 +31,7 @@
             case 'modificar': 
                 $libro = getInformacionLibro();
                 $url = "Location: libro.php?id=" . $libro->getIsbn();
-                Libro::updateLibro($libro);
-                header($url . "&updated=1");
+                actualizarLibro();
                 break;
             // Eliminar libro
             case 'eliminar':
@@ -79,10 +78,13 @@
     }
 
     function crearLibro() {
-        global $blade;
-        global $url;
-        global $libro;
-        global $categorias;
+        global $blade, $url, $libro, $categorias, $alertMessage;
+        comprobarDatos();
+        if($alertMessage) {
+            $_GET['crear'] = true;
+            echo $blade->view()->make('libro/editar', compact('libro', 'categorias', 'alertMessage'))->render();
+            exit();
+        }
         if(Libro::findLibro($libro->getIsbn())) {
             $alertMessage = new Alert("Ya existe un libro registrado con el ISBN " . $libro->getIsbn(), "danger");
             $_GET['crear'] = true;
@@ -93,6 +95,32 @@
         }
     }
 
+    function actualizarLibro() {
+        global $blade, $url, $libro, $categorias, $alertMessage;
+        comprobarDatos();
+        if($alertMessage) {
+            $_GET['editar'] = true;
+            echo $blade->view()->make('libro/editar', compact('libro', 'categorias', 'alertMessage'))->render();
+            exit();
+        }
+        Libro::updateLibro($libro);
+        header($url . "&updated=1");
+    }
 
+    function comprobarDatos() {
+        global $alertMessage;
+        if(empty($_POST['isbn']) || empty($_POST['titulo']) || empty($_POST['autor']) || empty($_POST['categoria'] )|| empty($_POST['paginas'])) {
+            $alertMessage = new Alert("Por favor, rellene todos los campos obligatorios", "danger");
+            return;
+        }
+        if(strlen($_POST['isbn']) < 10 || strlen($_POST['isbn']) > 13) {
+            $alertMessage = new Alert("El ISBN debe tener entre 10 y 13 caracteres", "danger");
+            return;
+        }
+        if($_POST['paginas'] < 0 || $_POST['precio'] < 0 || $_POST['cantidad'] < 0) {
+            $alertMessage = new Alert("No se admiten cantidades negativas", "danger");
+            return;
+        }
+    }
 
 ?>

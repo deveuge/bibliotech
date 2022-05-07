@@ -101,9 +101,6 @@
 						<a href="catalogo.php" class="btn btn-outline-primary">Volver</a>
 						@endisset
 						<div>
-							@isset($_GET["editar"])
-							<a href="#" class="btn btn-outline-danger">Eliminar</a>
-							@endisset
 							<button type="submit" id="submit" class="btn btn-primary text-light">Guardar</a>
 						</div>
 					</div>
