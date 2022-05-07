@@ -254,7 +254,7 @@ class Libro {
     }
 
     public function getPrecio() {
-        return $this->precio;
+        return number_format($this->precio, 2, '.', '');
     }
 
     public function getCantidad() {

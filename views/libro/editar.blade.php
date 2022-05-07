@@ -28,18 +28,18 @@
 								
 								<div class="input-group my-3 mb-lg-0 px-md-3">
 									<span class="input-group-text col-2 col-md-3 justify-content-center">ISBN</span>
-									<input type="text" class="form-control" id="isbn" name="isbn" placeholder="ISBN" value="{{ $libro->getIsbn() }}" {{ isset($_GET["editar"]) ? 'disabled' : ''}} required>
+									<input type="text" class="form-control" id="isbn" name="isbn" placeholder="ISBN-10 o ISBN-13" value="{{ $libro->getIsbn() }}" {{ isset($_GET["editar"]) ? 'disabled' : ''}} autofocus required>
 								</div>
 							</div>
 							<div class="col-12 col-lg-8">
 								<div class="mt-2 mt-lg-0 text-center text-lg-start">
 									<div class="input-group input-group-lg mb-2">
 										<span class="input-group-text col-2 justify-content-center">Título</span>
-										<input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título" value="{{ $libro->getNombre() }}" autofocus required>
+										<input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título del libro" value="{{ $libro->getNombre() }}" autofocus required>
 									</div>
 									<div class="input-group">
 										<span class="input-group-text col-2 justify-content-center">Autor</span>
-										<input type="text" class="form-control" id="autor" name="autor" placeholder="Autor" value="{{ $libro->getAutor() }}" required>
+										<input type="text" class="form-control" id="autor" name="autor" placeholder="Autor del libro" value="{{ $libro->getAutor() }}" required>
 									</div>
 									
 								</div>
@@ -58,14 +58,14 @@
 									<li class="list-group-item row">
 										<label for="paginas" class="col-12 col-md-9 col-form-label fw-bold">Número de páginas</label>
 										<div class="col-12 col-md-3">
-											<input type="number" class="form-control text-end" id="paginas" name="paginas" value="{{ $libro->getPaginas() }}">
+											<input type="number" class="form-control text-end" id="paginas" name="paginas" min="0" value="{{ $libro->getPaginas() }}">
 										</div>
 									</li>
 									<li class="list-group-item row">
 										<label for="precio" class="col-12 col-md-9 col-form-label fw-bold">Precio</label>
 										<div class="col-12 col-md-3">
 											<div class="input-group">
-												<input type="number" class="form-control text-end" id="precio" name="precio" value="{{ $libro->getPrecio() }}">
+												<input type="number" class="form-control text-end" id="precio" name="precio" min="0" step="0.01" value="{{ $libro->getPrecio() }}">
 												<span class="input-group-text">€</span>
 											</div>
 										</div>
@@ -79,14 +79,14 @@
 									<li class="list-group-item row">
 										<label for="cantidad" class="col-12 col-md-10 col-form-label fw-bold">Número de ejemplares total</label>
 										<div class="col-12 col-md-2">
-											<input type="number" class="form-control text-end" id="cantidad" name="cantidad" value="{{ $libro->getCantidad() }}">
+											<input type="number" class="form-control text-end" id="cantidad" name="cantidad" min="0" value="{{ $libro->getCantidad() }}">
 										</div>
 									</li>
 								</ul>
 							</div>
 							<div class="col-12 mt-3 mt-lg-0 offset-lg-4 col-lg-8">
 								<label for="descripcion" class="form-label d-none">Descripción</label>
-  								<textarea class="form-control" id="descripcion" name="descripcion" placeholder="Descripción" rows="6">{{ $libro->getDescripcion() }}</textarea>
+  								<textarea class="form-control" id="descripcion" name="descripcion" placeholder="Breve descripción o sinopsis del libro" rows="6">{{ $libro->getDescripcion() }}</textarea>
 							</div>
 						</div>
 					</div>
