@@ -71,7 +71,7 @@
 							</div>
 						</div>
 						@if($libro->getDescripcion())
-						<blockquote class="mt-4">{{ $libro->getDescripcion() }}</blockquote>
+						<blockquote class="mt-4">{!! nl2br(e($libro->getDescripcion())) !!}</blockquote>
 						@endif
 					</div>
 				</div>
