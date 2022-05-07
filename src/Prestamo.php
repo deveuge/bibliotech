@@ -166,5 +166,15 @@ class Prestamo {
         return !$this->devuelto && strtotime(date_create()->format('Y-m-d')) > strtotime($this->getFechaAsignadaDevolucionInput());
     }
 
+    public function getColorFila() {
+        if($this->esFueraDePlazo()) {
+            return 'table-danger';
+        }
+        if($this->getDevuelto()) {
+            return 'table-light opacity-50';
+        }
+        return '';
+    }
+
 }
 ?>

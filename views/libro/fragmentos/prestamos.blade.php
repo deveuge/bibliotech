@@ -18,7 +18,7 @@
             </thead>
             <tbody>
                 @foreach ($prestamos as $prestamo)
-                <tr class="{{ $prestamo->esFueraDePlazo() ? 'table-danger' : '' }}">
+                <tr class="{{ $prestamo->getColorFila() }}">
                     <td><img src="{{ $prestamo->getUsuario()->getImagen() }}" class="user-image"></td>
                     <th scope="row">
                         <a href="perfil.php?id={{ $prestamo->getUsuario()->getUsername() }}">{{ $prestamo->getUsuario()->getUsername() }}</a>

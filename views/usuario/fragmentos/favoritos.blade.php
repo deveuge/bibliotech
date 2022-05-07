@@ -1,7 +1,7 @@
 @foreach ($favoritos as $favorito)
 <div class="col favorito" id="fav-{{ $favorito->getIsbn() }}">
-    <div class="card p-0">
-        <div class="row g-0">
+    <div class="card h-100">
+        <div class="row h-100 g-0">
             <div class="col-sm-4">
                 <img src="https://covers.openlibrary.org/b/isbn/{{ $favorito->getIsbn() }}-L.jpg"
                     class="img-fluid">

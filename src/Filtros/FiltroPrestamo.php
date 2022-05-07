@@ -29,10 +29,13 @@ class FiltroPrestamo {
                 $this->pagina = 1;
                 $this->filas = 4;
                 break;
+            // Filtro específico para el perfil
             case 3:
                 $this->username = func_get_arg(0);
                 $this->isbn = func_get_arg(1);
                 $this->pagina = func_get_arg(2);
+                $this->ordenColumna = 'assigned_return_date';
+                $this->ordenDireccion = 'DESC';
                 break;
             case 4:
                 $this->username = func_get_arg(0);

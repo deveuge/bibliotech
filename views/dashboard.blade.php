@@ -87,8 +87,8 @@
 				<div class="row row-cols-1 row-cols-md-2 g-4" id="libros-actuales">
 					@foreach ($prestamos as $prestamo)
 					<div class="col">
-						<div class="card p-0">
-							<div class="row g-0">
+						<div class="card h-100">
+							<div class="row h-100 g-0">
 								<div class="col-sm-4">
 									<img src="https://covers.openlibrary.org/b/isbn/{{ $prestamo->getLibro()->getIsbn() }}-L.jpg"
 										class="img-fluid">

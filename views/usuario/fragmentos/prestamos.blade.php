@@ -14,7 +14,7 @@
             </thead>
             <tbody>
                 @foreach ($prestamos as $prestamo)
-                <tr class="{{ $prestamo->esFueraDePlazo() ? 'table-danger' : '' }}">
+                <tr class="{{ $prestamo->getColorFila() }}">
                     <th scope="row">{{ $prestamo->getLibro()->getIsbn() }}</th>
                     <td>{{ $prestamo->getLibro()->getNombre() }}</td>
                     <td>{{ $prestamo->getLibro()->getAutor() }}</td>
