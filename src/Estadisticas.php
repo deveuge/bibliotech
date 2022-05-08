@@ -35,7 +35,7 @@ class Estadisticas {
             (SELECT COUNT(*) FROM favorite WHERE user_id = ?) AS favoritos, 
             (SELECT COUNT(*) FROM lending WHERE user_id = ? AND returned = 0) AS prestamos 
             FROM lending l JOIN book b ON l.book_id=b.ISBN 
-            WHERE user_id = ? 
+            WHERE user_id = ? AND returned = 1
             EOD
         );
         $stmt->execute([$user, $user, $user]);
@@ -57,7 +57,7 @@ class Estadisticas {
             <<<EOD
             SELECT c.name AS categoria, COUNT(DISTINCT(l.book_id)) AS total 
             FROM lending l JOIN book b on l.book_id = b.ISBN JOIN category c ON b.category_id = c.id 
-            WHERE l.user_id = ? GROUP BY c.name LIMIT 5
+            WHERE l.user_id = ? AND returned = 1 GROUP BY c.name LIMIT 5
             EOD
         );
         $stmt->execute([$user]);
