@@ -1,0 +1,36 @@
+.card {
+    background: -moz-repeating-linear-gradient(-45deg, var(--bs-danger), var(--bs-danger) 1.5rem, #F2F2F2 1.5rem, #F2F2F2 1.75rem, var(--bs-primary) 1.75rem, var(--bs-primary) 3.25rem, #F2F2F2 3.25rem, #F2F2F2 3.5rem);
+    background: -webkit-repeating-linear-gradient(-45deg, var(--bs-danger), var(--bs-danger) 1.5rem, #F2F2F2 1.5rem, #F2F2F2 1.75rem, var(--bs-primary) 1.75rem, var(--bs-primary) 3.25rem, #F2F2F2 3.25rem, #F2F2F2 3.5rem);
+    background: -o-repeating-linear-gradient(-45deg, var(--bs-danger), var(--bs-danger) 1.5rem, #F2F2F2 1.5rem, #F2F2F2 1.75rem, var(--bs-primary) 1.75rem, var(--bs-primary) 3.25rem, #F2F2F2 3.25rem, #F2F2F2 3.5rem);
+    background: repeating-linear-gradient(-45deg, var(--bs-danger), var(--bs-danger) 1.5rem, #F2F2F2 1.5rem, #F2F2F2 1.75rem, var(--bs-primary) 1.75rem, var(--bs-primary) 3.25rem, #F2F2F2 3.25rem, #F2F2F2 3.5rem);
+    z-index: 1;
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    border-radius: 0.25rem;
+    margin: 0.4rem;
+    background: var(--bs-white);
+    z-index: -1;
+}
+
+#satisfaccion-selector input {
+    display: none;
+}
+
+#satisfaccion-selector input + span {
+    filter: grayscale(1);
+    padding: 0.25rem;
+    font-size: 3rem;
+    cursor: pointer;
+}
+
+#satisfaccion-selector input:checked + span,
+#satisfaccion-selector input:hover + span {
+    filter: grayscale(0);
+}

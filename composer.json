@@ -21,6 +21,7 @@
         "jaxon-php/jaxon-core": "^3.8",
         "jaxon-php/jaxon-js": "^3.3",
         "jaxon-php/jaxon-blade": "^3.0",
-        "yepsua/jquery4php": "^1.7"
+        "yepsua/jquery4php": "^1.7",
+        "phpmailer/phpmailer": "^6.6"
     }
 }
