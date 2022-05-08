@@ -14,7 +14,7 @@
 				<form action="feedback.php" method="POST" id="form">
 					<div class="mb-3">
 						<label for="tipo" class="form-label">Tipo de mensaje</label>
-						<select class="form-select" id="tipo" name="tipo" required>
+						<select class="form-select" id="tipo" name="tipo" required autofocus>
 							<option selected disabled>Seleccionar una opción</option>
 							<option value="Comentario">Comentario</option>
 							<option value="Problema">Problema</option>
