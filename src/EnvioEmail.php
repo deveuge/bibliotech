@@ -18,8 +18,8 @@ class EnvioEmail {
             $mail->Port       = $config['email']['port'];
 
             //Recipients
-            $mail->setFrom('deveuge.dev@gmail.com', 'Bibliotech');
-            $mail->addAddress('deveuge@gmail.com');
+            $mail->setFrom($config['email']['username'], 'Bibliotech');
+            $mail->addAddress($config['email']['receiver']);
 
             //Content
             $mail->isHTML(true);
