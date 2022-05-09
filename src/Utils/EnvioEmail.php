@@ -1,5 +1,5 @@
 <?php
-namespace Clases;
+namespace Clases\Utils;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 

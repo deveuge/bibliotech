@@ -2,7 +2,7 @@
     require_once '../vendor/autoload.php';
     require_once '../src/Utils/Blade.php';
 
-    use Clases\EnvioEmail;
+    use Clases\Utils\EnvioEmail;
     use Clases\Utils\Alert;
 
     YsJQueryAutoloader::register();
