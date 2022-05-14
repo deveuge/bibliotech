@@ -73,7 +73,7 @@
 									<li class="list-group-item row">
 										<label for="fecha" class="col-12 col-md-8 col-form-label fw-bold">Fecha de publicación</label>
 										<div class="col-12 col-md-4">
-											<input type="date" class="form-control" id="fecha" name="fecha" value="{{ $libro->getFechaPublicacionInput() }}">
+											<input type="date" class="form-control" id="fecha" name="fecha" value="{{ $libro->getFechaPublicacionInput() }}" required>
 										</div>
 									</li>
 									<li class="list-group-item row">
