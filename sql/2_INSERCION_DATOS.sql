@@ -3,7 +3,7 @@ INSERT INTO `bibliotech_daw`.`user` (`username`, `email`, `name`, `password`, `r
 INSERT INTO `bibliotech_daw`.`user` (`username`, `email`, `name`, `password`, `role`) SELECT 'user', 'user@bibliotech.com', 'Usuario', SHA2('user', 256), 'USER';
 
 INSERT INTO `bibliotech_daw`.`user` (`username`, `email`, `image`, `name`, `password`, `role`) SELECT 'jfranav', 'jfranav@bibliotech.com', '1', 'Juan Francisco Navarra', SHA2('1234', 256), 'USER';
-INSERT INTO `bibliotech_daw`.`user` (`username`, `email`, `image`, `name`, `password`, `role`) SELECT 'rsanord', 'rsanord@bibliotech.com', '2', 'Ramon Sandoval Ordóñez', SHA2('1234', 256), 'USER';
+INSERT INTO `bibliotech_daw`.`user` (`username`, `email`, `image`, `name`, `password`, `role`) SELECT 'rsanord', 'rsanord@bibliotech.com', '2', 'Ramón Sandoval Ordóñez', SHA2('1234', 256), 'USER';
 INSERT INTO `bibliotech_daw`.`user` (`username`, `email`, `image`, `name`, `password`, `role`) SELECT 'hbenpre', 'hbenpre@bibliotech.com', '3', 'Hugo Benítez Predrero', SHA2('1234', 256), 'USER';
 INSERT INTO `bibliotech_daw`.`user` (`username`, `email`, `image`, `name`, `password`, `role`) SELECT 'avelang', 'avelang@bibliotech.com', '4', 'Alonso Vélez Anglés', SHA2('1234', 256), 'USER';
 
@@ -56,3 +56,53 @@ INSERT INTO `bibliotech_daw`.`book` (`ISBN`, `author`, `name`, `description`, `p
 ('9780314184719', 'Antonin Scalia', 'Argumentando su caso: el arte de persuadir a los jueces', 'En su vida profesional, los abogados de los tribunales deben hacer estas dos cosas: hablar de manera persuasiva y escribir de manera persuasiva. En este libro notable, dos de los escritores legales más destacados de nuestros días, el juez Antonin Scalia y Bryan A. Garner, presentan sistemáticamente cada idea importante sobre la persuasión judicial de una manera fresca y entretenida. Making Your Case: The Art of Persuading Judges es una guía para litigantes novatos y experimentados por igual. Cubre los elementos esenciales del razonamiento legal sólido, incluido cómo desarrollar el silogismo que subyace en cualquier argumento. A partir de ahí, los autores explican el arte de la escritura breve, especialmente qué incluir y qué omitir, para que pueda inducir al juez a concentrarse de cerca en sus argumentos. Finalmente muestran lo que se necesita para tener éxito en la argumentación oral. Las opiniones del juez Scalia son legendarias por sus perspicacias agudas, ingenio mordaz y frases memorables.', 41, 1, 4, 269, '2008-04-28 00:00:00', NULL, '2022-04-30 19:59:59'),
 ('9788416714100', 'Gaston Dorren', 'Lingo', 'Bienvenido a Europa como nunca la has visto: a través de las peculiaridades de sus idiomas y dialectos. Gaston Dorren mezcla la lingüística y la historia cultural y nos conduce a un fascinante tour por el continente, desde el protoindoeuropeo (el antepasado común de las lenguas europeas) hasta el triunfo del inglés, pasando por las complejidades de los plurales del galés y la pronunciación checa. Por el camino aprenderemos por qué el esperanto no prospera, qué les sorprende más a los extranjeros que intentan aprender español y por qué el finés es el idioma europeo más fácil de aprender. ¿Preparados? Sorprendente, ingeniosa y lleno de datos extraordinarios, \"Lingo\" cambiará nuestra forma de entender el lenguaje.', 17, 3, 8, 285, '2017-03-17 00:00:00', NULL, '2022-04-30 19:29:46'),
 ('9788499924212', 'Yuval Noah Harari', 'Sapiens. De animales a dioses: Una breve historia de la humanidad', 'En De animales a dioses, Yuval Noah Harari traza una breve historia de la humanidad, desde los primeros humanos que caminaron sobre la Tierra hasta los radicales y a veces devastadores avances de las tres grandes revoluciones que nuestra especie ha protagonizado: la cognitiva, la agrícola y la científica. A partir de hallazgos de disciplinas tan diversas como la biología, la antropología, la paleontología o la economía, Harari explora cómo las grandes corrientes de la historia han modelado nuestra sociedad, los animales y las plantas que nos rodean e incluso nuestras personalidades. ¿Hemos ganado en felicidad a medida que ha avanzado la historia? ¿Seremos capaces de liberar alguna vez nuestra conducta de la herencia del pasado? ¿Podemos hacer algo para influir en los siglos futuros?', 22, 2, 9, 385, '2014-09-04 00:00:00', NULL, '2022-04-30 19:59:59');
+
+-- TABLA LENDING
+INSERT INTO `lending` (`id`, `book_id`, `user_id`, `returned`, `assigned_return_date`, `real_return_date`, `created_at`) VALUES
+(1, '0060566108', 'aisafon', 1, '2022-03-13 08:32:36', '2022-03-11 08:32:36', '2022-03-13 08:32:36'),
+(2, '1400064287', 'aisafon', 1, '2022-04-05 08:32:41', '2022-04-02 08:32:41', '2022-03-05 08:32:41'),
+(3, '1400064287', 'aisafon', 0, '2022-06-17 08:32:41', NULL, '2022-05-17 08:32:41'),
+(4, '0743223136', 'aisafon', 0, '2022-05-10 08:35:18', NULL, '2022-04-10 08:35:18'),
+(5, '0743223136', 'aisafon', 1, '2022-04-05 08:32:41', '2022-04-02 08:32:41', '2022-03-05 08:32:41'),
+(6, '8478713808', 'avelang', 0, '2022-02-13 08:36:56', NULL, '2022-01-14 08:36:56'),
+(7, '8490060940', 'avelang', 1, '2022-05-13 08:37:06', '2022-05-13 08:37:06', '2022-04-14 08:37:06'),
+(8, '8499928676', 'avelang', 1, '2022-04-13 08:37:14', '2022-04-13 08:37:14', '2022-04-14 08:37:14'),
+(9, '9788416714100', 'avelang', 0, '2022-06-13 08:37:21', NULL, '2022-05-14 08:37:21'),
+(10, '1400064287', 'avelang', 1, '2022-03-13 08:37:29', '2022-03-13 08:37:29', '2022-03-11 08:37:29'),
+(11, '0743264738', 'avelang', 1, '2022-03-13 08:40:27', '2022-03-13 08:40:27', '2022-03-11 08:40:27'),
+(12, '0716743396', 'cmarobr', 1, '2022-03-13 08:41:53', '2022-03-13 08:41:53', '2022-03-14 08:41:53'),
+(13, '1501144324', 'cmarobr', 0, '2022-06-11 08:41:58', NULL, '2022-05-14 08:41:58'),
+(14, '8491134689', 'cmarobr', 0, '2022-04-17 08:42:14', NULL, '2022-05-14 08:42:14'),
+(15, '0716743396', 'cmarobr', 0, '2022-07-07 08:42:14', NULL, '2022-05-14 08:42:14'),
+(16, '0300079397', 'hbenpre', 0, '2022-06-21 08:44:42', NULL, '2022-05-14 08:44:42'),
+(17, '0452287022', 'hbenpre', 0, '2022-06-28 08:44:50', NULL, '2022-05-14 08:44:50'),
+(18, '0676979785', 'hbenpre', 0, '2022-06-23 08:45:02', NULL, '2022-05-14 08:45:02'),
+(19, '0847826465', 'hbenpre', 1, '2022-05-11 08:45:10', '2022-05-13 08:45:10', '2022-05-14 08:45:10'),
+(20, '9788416714100', 'hbenpre', 1, '2022-05-13 08:45:58', '2022-05-13 08:45:58', '2022-05-14 08:45:58'),
+(21, '0008241775', 'jfranav', 1, '2022-02-13 08:47:58', '2022-02-13 08:47:58', '2022-05-14 08:47:58'),
+(22, '0306812835', 'jfranav', 1, '2022-02-11 08:48:09', '2022-02-11 08:48:09', '2022-05-14 08:48:09'),
+(23, '8491991913', 'jfranav', 0, '2022-06-24 08:48:17', NULL, '2022-05-14 08:48:17'),
+(24, '0393609391', 'jfranav', 0, '2022-07-13 08:48:41', NULL, '2022-05-14 08:48:41'),
+(25, '0553374117', 'jfranav', 0, '2022-08-10 08:48:45', NULL, '2022-05-14 08:48:45'),
+(26, '9684063563', 'jfranav', 1, '2022-04-13 08:48:52', '2022-04-13 08:48:52', '2022-05-14 08:48:52'),
+(27, '0008241775', 'jfranav', 0, '2022-06-13 08:47:58', NULL, '2022-05-14 08:47:58'),
+(28, '0306812835', 'jfranav', 0, '2022-06-13 08:48:09', NULL, '2022-05-14 08:48:09'),
+(29, '0008241775', 'jfranav', 1, '2022-03-23 08:47:58', '2022-03-23 08:47:58', '2022-05-14 08:47:58'),
+(30, '0306812835', 'jfranav', 1, '2022-03-07 08:48:09', '2022-03-07 08:48:09', '2022-05-14 08:48:09'),
+(31, '0306812835', 'jfranav', 1, '2022-01-04 08:48:09', '2022-01-04 08:48:09', '2022-05-14 08:48:09'),
+(32, '0676979785', 'rsanord', 1, '2022-05-07 08:53:29', '2022-05-07 08:53:29', '2022-05-14 08:53:29'),
+(33, '030774129X', 'rsanord', 0, '2022-07-08 08:53:45', NULL, '2022-05-14 08:53:45'),
+(34, '0393324818', 'rsanord', 0, '2022-06-21 08:53:54', NULL, '2022-05-14 08:53:54'),
+(35, '9780314184719', 'syanaba', 1, '2022-04-11 08:56:24', '2022-04-11 08:56:24', '2022-05-14 08:56:24'),
+(36, '8401021758', 'syanaba', 0, '2022-03-09 08:56:30', NULL, '2022-05-14 08:56:30'),
+(37, '0300079397', 'syanaba', 0, '2022-02-04 08:56:48', NULL, '2022-05-14 08:56:48'),
+(38, '0743264738', 'syanaba', 0, '2022-01-11 08:57:10', NULL, '2022-05-14 08:57:10'),
+(39, '0847826465', 'vcerhid', 1, '2022-05-13 08:59:39', '2022-05-13 08:59:39', '2022-05-14 08:59:39'),
+(40, '9780314184719', 'vcerhid', 1, '2022-05-16 08:59:51', '2022-05-16 08:59:51', '2022-05-14 08:59:51'),
+(41, '0553374117', 'vcerhid', 1, '2022-04-10 08:59:58', '2022-04-10 08:59:58', '2022-05-14 08:59:58'),
+(42, '9684063563', 'vcerhid', 1, '2022-02-13 09:00:05', '2022-02-13 09:00:05', '2022-05-14 09:00:05'),
+(43, '0847826465', 'vcerhid', 0, '2022-06-22 08:59:39', NULL, '2022-05-14 08:59:39'),
+(44, '9780314184719', 'vcerhid', 0, '2022-06-30 08:59:51', NULL, '2022-05-14 08:59:51'),
+(45, '0553374117', 'vcerhid', 0, '2022-07-01 08:59:58', NULL, '2022-05-14 08:59:58'),
+(46, '9684063563', 'vcerhid', 0, '2022-07-12 09:00:05', NULL, '2022-05-14 09:00:05'),
+(47, '0300079397', 'vcerhid', 0, '2022-07-18 09:02:02', NULL, '2022-05-14 09:02:02');
