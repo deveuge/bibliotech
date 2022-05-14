@@ -117,7 +117,7 @@
     // Revisión de campos obligatorios y de formato específico
     function comprobarDatos() {
         global $alertMessage;
-        if(empty($_POST['isbn']) || empty($_POST['titulo']) || empty($_POST['autor']) || empty($_POST['categoria'] )|| empty($_POST['paginas'] || empty($_POST['fecha']))) {
+        if(empty($_POST['isbn']) || empty($_POST['titulo']) || empty($_POST['autor']) || empty($_POST['categoria'] )|| empty($_POST['paginas'] || empty($_POST['fecha']) || empty($_POST['cantidad']))) {
             $alertMessage = new Alert("Por favor, rellene todos los campos obligatorios", "danger");
             return;
         }

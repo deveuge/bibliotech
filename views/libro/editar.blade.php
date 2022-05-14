@@ -79,7 +79,7 @@
 									<li class="list-group-item row">
 										<label for="cantidad" class="col-12 col-md-10 col-form-label fw-bold">Número de ejemplares total</label>
 										<div class="col-12 col-md-2">
-											<input type="number" class="form-control text-end" id="cantidad" name="cantidad" min="0" value="{{ $libro->getCantidad() }}">
+											<input type="number" class="form-control text-end" id="cantidad" name="cantidad" min="0" value="{{ $libro->getCantidad() }}" required>
 										</div>
 									</li>
 								</ul>
