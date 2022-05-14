@@ -5,6 +5,24 @@ use \DateInterval;
 
 class Funciones {
 
+    public static function obtenerConfiguracion() {
+        if(getenv('EXTERNAL_DEPLOY') != null) {
+            $config['database']['host'] = getenv('DB_HOST');
+            $config['database']['db'] = getenv('DB_NAME');
+            $config['database']['user'] = getenv('DB_USER');
+            $config['database']['pass'] = getenv('DB_PASS');
+
+            $config['email']['host'] = getenv('EM_HOST');
+            $config['email']['username'] = getenv('EM_USER');
+            $config['email']['password'] = getenv('EM_PASS');
+            $config['email']['receiver'] = getenv('EM_RECEIVER');
+            $config['email']['port'] = getenv('EM_PORT');
+            return $config;
+        } else {
+            return parse_ini_file("../bibliotech.ini", true);
+        }
+    }
+
     public static function comprobarAccesoModerador() {
         if(!$_SESSION['usuario']->esModerador()) {
             header("Location: error.php?code=403");

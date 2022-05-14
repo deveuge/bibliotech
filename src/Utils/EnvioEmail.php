@@ -7,7 +7,7 @@ class EnvioEmail {
     public static function enviarEmail($asunto, $cuerpo){
         $mail = new PHPMailer(true);
         try {
-            $config = parse_ini_file("../bibliotech.ini", true);
+            $config = Funciones::obtenerConfiguracion();
             //Server settings
             $mail->isSMTP();
             $mail->Host       = $config['email']['host'];
