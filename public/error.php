@@ -4,6 +4,7 @@
 
     $code = $_GET['code'];
     $msg = "";
+    // Se mostrará el error correspondiente al pasado por parámetro query como "code"
     switch($code) {
         case 403:
             $msg = "No tiene permisos para acceder a esta página";

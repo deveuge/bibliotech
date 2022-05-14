@@ -6,6 +6,7 @@
     use Clases\Prestamo;
     use Clases\Utils\Funciones;
 
+    // Realizar solicitud o devolución de un préstamo
     if(!empty($_POST) && isset($_POST['accion'])) {
         switch($_POST['accion']) {
             case "solicitar-catalogo":
@@ -29,6 +30,7 @@
         }
     }
 
+    // Realizar la solicitud de un préstamo
     function realizarSolicitud() {
         global $url;
         $isbn = $_POST['isbn'];
@@ -50,6 +52,7 @@
         header($url . 1); 
     }
 
+    // Realizar la devolución de un préstamo
     function realizarDevolucion() {
         $isbn = $_POST['isbn'];
         $user = $_POST['user'];

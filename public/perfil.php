@@ -20,6 +20,7 @@
     
     $alertMessage = null;
 
+    // Paginación de préstamos del usuario
     function paginar($usuario, $pagina) {
         global $blade;
         if($usuario == null) {
@@ -35,6 +36,7 @@
         return $response;
     }
     
+    // Paginación infinita de libros favoritos del usuario
     function cargarFavoritos($user, $page) {
         global $blade;
         $response = new Response();
@@ -47,6 +49,7 @@
         return $response;
     }
 
+    // Eliminación de un libro favorito del usuario
     function eliminarFavorito($isbn) {
         $response = new Response();
         Libro::eliminarFavorito($_SESSION['usuario']->getUsername(), $isbn);
@@ -58,6 +61,7 @@
         return $response;
     }
 
+    // Registro de funciones a llamar por Jaxon
     $jaxon->register(Jaxon::CALLABLE_FUNCTION, "paginar");
     $jaxon->register(Jaxon::CALLABLE_FUNCTION, "cargarFavoritos");
     $jaxon->register(Jaxon::CALLABLE_FUNCTION, "eliminarFavorito");
@@ -65,6 +69,7 @@
         $jaxon->processRequest();
     }
 
+    // Guardar la configuración del usuario
     if(!empty($_POST)) {
         $usuario = $_SESSION['usuario'];
         if($_POST['password'] != $_POST['repeat-password']) {
@@ -82,11 +87,15 @@
             $alertMessage = new Alert("Datos actualizados correctamente", "success");
         }
         echo $blade->view()->make('usuario/editar', compact('usuario', 'alertMessage'))->render();
-    } else {
+    } 
+    else {
         $usuario = $_SESSION['usuario'];
+        // Vista de configuración del usuario
         if(isset($_GET["editar"])) {
             echo $blade->view()->make('usuario/editar', compact('usuario'))->render();
-        } else {
+        } 
+        // Vista del perfil del usuario
+        else {
             if(isset($_GET["id"])) {
                 $usuario = Usuario::findUsuarioPorUsername($_GET["id"]);
                 Funciones::comprobarError404($usuario);
@@ -96,6 +105,7 @@
         }
     }
 
+    // Renderizado de la vista del perfil del usuario
     function cargarVistaPerfil($usuario) {
         global $blade;
         global $jaxon;

@@ -17,6 +17,7 @@
     $categorias = Categoria::list();
     $alertMessage = null;
 
+    // Crear, modificar o eliminar libro según la acción recibida por POST
     if(!empty($_POST) && isset($_POST['accion'])) {
         Funciones::comprobarAccesoModerador();
         
@@ -40,10 +41,13 @@
                 break;
         }
     }
+    // Vista de creación de un nuevo libro
     elseif(isset($_GET["crear"])) {
         Funciones::comprobarAccesoModerador();
         echo $blade->view()->make('libro/editar', compact('libro', 'categorias'))->render();
-    } else {
+    } 
+    // Vista de detalle de un libro existente
+    else {
         $libro = Libro::findLibro($_GET["id"]);
         Funciones::comprobarError404($libro);
         $esFavorito = Libro::esFavorito($_SESSION['usuario']->getUsername(), $libro->getIsbn());
@@ -62,6 +66,7 @@
         }
     }
     
+    // Construcción de un objeto Libro según los parámetros recibidos por POST
     function getInformacionLibro() {
         return new Libro (
             $_POST['isbn'],
@@ -77,6 +82,7 @@
         );
     }
 
+    // Guardar un nuevo libro en BD y redirigir a la vista de su detalle
     function crearLibro() {
         global $blade, $url, $libro, $categorias, $alertMessage;
         comprobarDatos();
@@ -95,6 +101,7 @@
         }
     }
 
+    // Actualizar el libro en BD y redirigir a la vista de su detalle
     function actualizarLibro() {
         global $blade, $url, $libro, $categorias, $alertMessage;
         comprobarDatos();
@@ -107,6 +114,7 @@
         header($url . "&updated=1");
     }
 
+    // Revisión de campos obligatorios y de formato específico
     function comprobarDatos() {
         global $alertMessage;
         if(empty($_POST['isbn']) || empty($_POST['titulo']) || empty($_POST['autor']) || empty($_POST['categoria'] )|| empty($_POST['paginas'])) {

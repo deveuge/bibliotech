@@ -4,6 +4,7 @@
 
     use Clases\Libro;
 
+    // Agregar o eliminar libro de favoritos según la acción recibida por POST
     if(!empty($_POST) && isset($_POST['accion'])) {
         switch($_POST['accion']) {
             case "agregar":

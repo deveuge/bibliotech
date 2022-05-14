@@ -11,9 +11,11 @@
     $alertMessage = null;
 
     if(!empty($_POST)) {
+        // Revisión de campos obligatorios
         if(empty($_POST['tipo']) || empty($_POST['asunto']) || empty($_POST['mensaje'])) {
             $alertMessage = new Alert("Por favor, rellene todos los campos obligatorios", "danger");
         }
+        // Envío de email al administrador con el feedback del usuario
         else {
             $tipo = $_POST['tipo'];
             $asunto = $_POST['asunto'];
@@ -29,6 +31,7 @@
         }
     }
 
+    // Generación del cuerpo del email con la plantilla html y los datos del usuario
     function construirCuerpoEmail() {
         $filename = "emailTemplate.html";
         $file = fopen($filename, "r");
@@ -46,6 +49,7 @@
         return $cuerpo;
     }
 
+    // Generación del emoji a imprimir en el email según el grado de satisfacción del usuario
     function construirEmojiSatisfaccion() {
         $satisfaccion = isset($_POST['satisfaccion']) ? $_POST['satisfaccion'] : 0;
         $emoji = "No especificado";
@@ -66,7 +70,6 @@
                 $emoji = "&#128515;";
                 break;
         }
-
         return "$emoji - ($satisfaccion)";
     }
 
