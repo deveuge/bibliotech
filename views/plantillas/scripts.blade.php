@@ -3,6 +3,7 @@
 <script src="js/lib/glider.min.js"></script>
 <script src="js/lib/chart.min.js"></script>
 <script src="js/lib/jquery.validate.min.js"></script>
+<script src="js/lib/jaxon.core.min.js"></script>
 
 <script src="js/general.js"></script>
 <script>
